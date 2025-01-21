@@ -4,7 +4,7 @@ COLLATE utf8mb4_spanish_ci;
 use Reto2_t;
 
 CREATE TABLE Agencia(
-	Id_Agencia VARCHAR(5) PRIMARY KEY NOT NULL,
+	Id_Agencia CHAR(5) PRIMARY KEY NOT NULL,
 	NomAgencia TEXT NOT NULL,
 	TipoAgencia TEXT NOT NULL,
 	ColorAgencia VARCHAR(7) NOT NULL ,
@@ -20,7 +20,7 @@ VALUES
 ('AG003', 'ExploraMundo', 'Agencias de viajes espezializadas', '#3357FF', 20, 'https://images.app.goo.gl/Lc42zBdTBWT6jCjX6', 'pass@789');
 
 CREATE TABLE Viaje(
-	Id_Viaje VARCHAR(5) PRIMARY KEY NOT NULL,
+	Id_Viaje CHAR(5) PRIMARY KEY NOT NULL,
 	NomViaje TEXT NOT NULL,
 	TipoViaje TEXT NOT NULL,
 	FechInicio DATE NOT NULL ,
@@ -29,7 +29,7 @@ CREATE TABLE Viaje(
 	PaisDestino VARCHAR(40) NOT NULL,
 	Descripcion TEXT NOT NULL,
 	ServiciosnoIncl TEXT NOT NULL,
-	Id_Agencia  VARCHAR(5) NOT NULL,
+	Id_Agencia  CHAR(5) NOT NULL,
 	CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia)
 );
 
