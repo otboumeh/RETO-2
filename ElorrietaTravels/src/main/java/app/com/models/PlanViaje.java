@@ -3,57 +3,42 @@ package main.java.app.com.models;
 public class PlanViaje {
     private String idPlan;
     private String trayecto;
-    private String idVueloIda;
-    private String idVueloVuelta;
 
-    public PlanViaje() {}
+    private Evento evento;
+    private Vuelo vueloIda;
+    private Vuelo vueloVuelta;
 
-    public PlanViaje(String idPlan, String trayecto, String idVueloIda, String idVueloVuelta) {
+    public PlanViaje(String idPlan, String trayecto, Evento evento, Vuelo vueloIda, Vuelo vueloVuelta) {
         this.idPlan = idPlan;
         this.trayecto = trayecto;
-        this.idVueloIda = idVueloIda;
-        this.idVueloVuelta = idVueloVuelta;
+        this.evento = evento;
+        this.vueloIda = vueloIda;
+        this.vueloVuelta = vueloVuelta;
     }
 
-    public String getIdPlan() {
-        return idPlan;
-    }
+    public String getIdPlan() { return idPlan; }
+    public void setIdPlan(String idPlan) { this.idPlan = idPlan; }
 
-    public void setIdPlan(String idPlan) {
-        this.idPlan = idPlan;
-    }
+    public String getTrayecto() { return trayecto; }
+    public void setTrayecto(String trayecto) { this.trayecto = trayecto; }
 
-    public String getTrayecto() {
-        return trayecto;
-    }
+    public Evento getEvento() { return evento; }
+    public void setEvento(Evento evento) { this.evento = evento; }
 
-    public void setTrayecto(String trayecto) {
-        this.trayecto = trayecto;
-    }
+    public Vuelo getVueloIda() { return vueloIda; }
+    public void setVueloIda(Vuelo vueloIda) { this.vueloIda = vueloIda; }
 
-    public String getIdVueloIda() {
-        return idVueloIda;
-    }
-
-    public void setIdVueloIda(String idVueloIda) {
-        this.idVueloIda = idVueloIda;
-    }
-
-    public String getIdVueloVuelta() {
-        return idVueloVuelta;
-    }
-
-    public void setIdVueloVuelta(String idVueloVuelta) {
-        this.idVueloVuelta = idVueloVuelta;
-    }
+    public Vuelo getVueloVuelta() { return vueloVuelta; }
+    public void setVueloVuelta(Vuelo vueloVuelta) { this.vueloVuelta = vueloVuelta; }
 
     @Override
     public String toString() {
         return "PlanViaje{" +
                 "idPlan='" + idPlan + '\'' +
                 ", trayecto='" + trayecto + '\'' +
-                ", idVueloIda='" + idVueloIda + '\'' +
-                ", idVueloVuelta='" + idVueloVuelta + '\'' +
+                ", evento=" + (evento != null ? evento.getIdEvento() : "null") +
+                ", vueloIda=" + (vueloIda != null ? vueloIda.getIdVuelo() : "null") +
+                ", vueloVuelta=" + (vueloVuelta != null ? vueloVuelta.getIdVuelo() : "null") +
                 '}';
     }
 }
