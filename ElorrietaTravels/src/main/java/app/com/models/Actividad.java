@@ -6,46 +6,30 @@ public class Actividad {
     private String fecha;
     private int precio;
 
-    public Actividad() {}
+    private Evento evento;
 
-    public Actividad(String idActividad, String descripcion, String fecha, int precio) {
+    public Actividad(String idActividad, String descripcion, String fecha, int precio, Evento evento) {
         this.idActividad = idActividad;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.precio = precio;
+        this.evento = evento;
     }
 
-    public String getIdActividad() {
-        return idActividad;
-    }
+    public String getIdActividad() { return idActividad; }
+    public void setIdActividad(String idActividad) { this.idActividad = idActividad; }
 
-    public void setIdActividad(String idActividad) {
-        this.idActividad = idActividad;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    public int getPrecio() { return precio; }
+    public void setPrecio(int precio) { this.precio = precio; }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
+    public Evento getEvento() { return evento; }
+    public void setEvento(Evento evento) { this.evento = evento; }
 
     @Override
     public String toString() {
@@ -54,6 +38,7 @@ public class Actividad {
                 ", descripcion='" + descripcion + '\'' +
                 ", fecha='" + fecha + '\'' +
                 ", precio=" + precio +
+                ", evento=" + (evento != null ? evento.getIdEvento() : "null") +
                 '}';
     }
 }
