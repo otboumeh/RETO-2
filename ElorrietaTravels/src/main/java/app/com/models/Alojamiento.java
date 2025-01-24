@@ -9,9 +9,9 @@ public class Alojamiento {
     private String fechaEnt;
     private String fechaSal;
 
-    public Alojamiento() {}
+    private Evento evento;
 
-    public Alojamiento(String idAlojamiento, String nomHotel, String tipoHab, String ciudad, int precio, String fechaEnt, String fechaSal) {
+    public Alojamiento(String idAlojamiento, String nomHotel, String tipoHab, String ciudad, int precio, String fechaEnt, String fechaSal, Evento evento) {
         this.idAlojamiento = idAlojamiento;
         this.nomHotel = nomHotel;
         this.tipoHab = tipoHab;
@@ -19,63 +19,32 @@ public class Alojamiento {
         this.precio = precio;
         this.fechaEnt = fechaEnt;
         this.fechaSal = fechaSal;
+        this.evento = evento;
     }
 
-    public String getIdAlojamiento() {
-        return idAlojamiento;
-    }
+    public String getIdAlojamiento() { return idAlojamiento; }
+    public void setIdAlojamiento(String idAlojamiento) { this.idAlojamiento = idAlojamiento; }
 
-    public void setIdAlojamiento(String idAlojamiento) {
-        this.idAlojamiento = idAlojamiento;
-    }
+    public String getNomHotel() { return nomHotel; }
+    public void setNomHotel(String nomHotel) { this.nomHotel = nomHotel; }
 
-    public String getNomHotel() {
-        return nomHotel;
-    }
+    public String getTipoHab() { return tipoHab; }
+    public void setTipoHab(String tipoHab) { this.tipoHab = tipoHab; }
 
-    public void setNomHotel(String nomHotel) {
-        this.nomHotel = nomHotel;
-    }
+    public String getCiudad() { return ciudad; }
+    public void setCiudad(String ciudad) { this.ciudad = ciudad; }
 
-    public String getTipoHab() {
-        return tipoHab;
-    }
+    public int getPrecio() { return precio; }
+    public void setPrecio(int precio) { this.precio = precio; }
 
-    public void setTipoHab(String tipoHab) {
-        this.tipoHab = tipoHab;
-    }
+    public String getFechaEnt() { return fechaEnt; }
+    public void setFechaEnt(String fechaEnt) { this.fechaEnt = fechaEnt; }
 
-    public String getCiudad() {
-        return ciudad;
-    }
+    public String getFechaSal() { return fechaSal; }
+    public void setFechaSal(String fechaSal) { this.fechaSal = fechaSal; }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public String getFechaEnt() {
-        return fechaEnt;
-    }
-
-    public void setFechaEnt(String fechaEnt) {
-        this.fechaEnt = fechaEnt;
-    }
-
-    public String getFechaSal() {
-        return fechaSal;
-    }
-
-    public void setFechaSal(String fechaSal) {
-        this.fechaSal = fechaSal;
-    }
+    public Evento getEvento() { return evento; }
+    public void setEvento(Evento evento) { this.evento = evento; }
 
     @Override
     public String toString() {
@@ -87,6 +56,8 @@ public class Alojamiento {
                 ", precio=" + precio +
                 ", fechaEnt='" + fechaEnt + '\'' +
                 ", fechaSal='" + fechaSal + '\'' +
+                ", evento=" + (evento != null ? evento.getIdEvento() : "null") +
                 '}';
     }
 }
+
