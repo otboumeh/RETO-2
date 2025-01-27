@@ -2,7 +2,6 @@ CREATE DATABASE Reto2_t
 COLLATE utf8mb4_spanish_ci;
 
 USE Reto2_t;
-
 -- ///////////////// tipo agencia ////////////////////
 
 CREATE TABLE TipoAgencia(
@@ -50,6 +49,7 @@ VALUES
 CREATE TABLE TipoViaje (
 Cod_TipoViaje CHAR(2) PRIMARY KEY, 
 TipoViaje VARCHAR(70) NOT NULL
+
 );
 
 INSERT INTO TipoViaje (Cod_TipoViaje, TipoViaje) VALUES 
@@ -64,7 +64,7 @@ INSERT INTO TipoViaje (Cod_TipoViaje, TipoViaje) VALUES
 CREATE TABLE Viaje(
 	Id_Viaje VARCHAR(5) PRIMARY KEY NOT NULL,
 	NomViaje TEXT NOT NULL,
-	Cod_TipoViaje TEXT NOT NULL,
+	Cod_TipoViaje CHAR(2) NOT NULL,
 	FechInicio DATE NOT NULL ,
 	FechFin DATE NOT NULL ,
 	NumDias INT NOT NULL,
@@ -72,14 +72,16 @@ CREATE TABLE Viaje(
 	Descripcion TEXT NOT NULL,
 	ServiciosnoIncl TEXT NOT NULL,
 	Id_Agencia  VARCHAR(5) NOT NULL,
-	CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia)
+	CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia),
+	CONSTRAINT FK_Cod_TipoViaje FOREIGN KEY(Cod_TipoViaje) REFERENCES TipoViaje(Cod_TipoViaje)
+
 );
 
 INSERT INTO Viaje (Id_Viaje, NomViaje, Cod_TipoViaje, FechInicio, FechFin, NumDias, PaisDestino, Descripcion, ServiciosnoIncl, Id_Agencia)
 VALUES 
-('VI001', 'Aventura en Costa Rica', 'Aventura', '2025-03-01', '2025-03-10', 10, 'Costa Rica', 'Una experiencia llena de naturaleza y deportes extremos.', 'Comidas no incluidas', 'AG001'),
-('VI002', 'Tour por Europa', 'Cultural', '2025-04-01', '2025-04-20', 20, 'Francia, Italia, España', 'Visita a los lugares más emblemáticos de Europa.', 'Transporte interno no incluido', 'AG002'),
-('VI003', 'Relax en el Caribe', 'Playa', '2025-06-01', '2025-06-10', 10, 'República Dominicana', 'Vacaciones de descanso en las mejores playas del Caribe.', 'Excursiones no incluidas', 'AG003');
+('VI001', 'Aventura en Costa Rica', 'B4', '2025-03-01', '2025-03-10', 10, 'Costa Rica', 'Una experiencia llena de naturaleza y deportes extremos.', 'Comidas no incluidas', 'AG001'),
+('VI002', 'Tour por Europa', 'B5', '2025-04-01', '2025-04-20', 20, 'Francia, Italia, España', 'Visita a los lugares más emblemáticos de Europa.', 'Transporte interno no incluido', 'AG002'),
+('VI003', 'Relax en el Caribe', 'B1', '2025-06-01', '2025-06-10', 10, 'República Dominicana', 'Vacaciones de descanso en las mejores playas del Caribe.', 'Excursiones no incluidas', 'AG003');
 
 --  ////////////////// evento //////////////////////////// 
 
@@ -100,7 +102,7 @@ VALUES
 ('EV005', 'Plan Ida y Vuelta', 'Vuelo', 'VI002'),
 ('EV006', 'Hotel Sol', 'Alojamiento', 'VI001'),
 ('EV007', 'Resort Caribe', 'Alojamiento', 'VI002'),
-('EV008', 'Villa Toscana', 'Alojamiento', 'VI003')
+('EV008', 'Villa Toscana', 'Alojamiento', 'VI003'),
 ('EV009', 'Senderismo en Costa Rica', 'Actividad', 'VI001'),
 ('EV010', 'Tour por el Coliseo Romano', 'Actividad', 'VI002');
 
@@ -295,12 +297,12 @@ VALUES
  
  -- /////////////// tipo alojamiento ///////////////
 
-CREATE TABLE TipoAlojamiento (
+CREATE TABLE TipoDormitorio (
 	Cod_TipoHab VARCHAR(3) PRIMARY KEY, 
     TipoHab VARCHAR(30) NOT NULL
     );
 
-INSERT INTO TipoAlojamiento (Cod_TipoHab, TipoHab) VALUES 
+INSERT INTO TipoDormitorio (Cod_TipoHab, TipoHab) VALUES 
 ('DB', 'Doble'),
 ('DUI', 'Doble, uso individual'),
 ('SIN', 'Individual'),
@@ -318,7 +320,7 @@ CREATE TABLE Alojamiento (
     fechaEnt DATE NOT NULL,
     FechaSal DATE NOT NULL,
     CONSTRAINT FK_Id_Alojamiento FOREIGN KEY (Id_Alojamiento) REFERENCES Evento(Id_Evento),
-    CONSTRAINT FK_Cod_TipoHab FOREIGN KEY (Cod_TipoHab) REFERENCES TipoAlojamiento (Cod_TipoHab)
+    CONSTRAINT FK_Cod_TipoHab FOREIGN KEY (Cod_TipoHab) REFERENCES TipoDormitorio (Cod_TipoHab)
 );
 
 INSERT INTO Alojamiento (Id_Alojamiento, nomHotel, Cod_TipoHab, Ciudad, Precio, fechaEnt, FechaSal)
@@ -341,3 +343,10 @@ INSERT INTO Actividad (Id_Actividad, Descripcion, fecha, Precio)
 VALUES
 ('EV009', 'Senderismo en Costa Rica', '2025-03-02', 50),
 ('EV010', 'Tour por el Coliseo Romano', '2025-04-12', 75);
+
+
+
+
+
+
+
