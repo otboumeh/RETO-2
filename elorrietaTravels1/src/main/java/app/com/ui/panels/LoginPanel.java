@@ -28,7 +28,7 @@ public class LoginPanel extends JPanel{
 	
 	private CustomUsualButton loginButton = new CustomUsualButton("Login");
 	private CustomUsualButton newProfileButton = new CustomUsualButton("Nuevo Perfil");
-	private CustomCloseButton closeButton = new CustomCloseButton();
+	/*private CustomCloseButton closeButton = new CustomCloseButton();*/
 
 	public LoginPanel() {
         
@@ -58,7 +58,7 @@ public class LoginPanel extends JPanel{
         loginButton.setBounds(600, 450, loginButton.getWidth(), loginButton.getHeight());
         newProfileButton.setBounds(430, 450, newProfileButton.getWidth(), newProfileButton.getHeight());
 
-        closeButton.setBounds(10, 10, closeButton.getWidth(), closeButton.getHeight());
+        /*closeButton.setBounds(10, 10, closeButton.getWidth(), closeButton.getHeight());*/
     	
         layeredPane.setBounds(0, 0, 1200, 800);
         
@@ -71,7 +71,7 @@ public class LoginPanel extends JPanel{
         
         layeredPane.add(loginButton, Integer.valueOf(1));
         layeredPane.add(newProfileButton, Integer.valueOf(1));
-        layeredPane.add(closeButton, Integer.valueOf(1));
+        /*layeredPane.add(closeButton, Integer.valueOf(1));*/
         
     	add(layeredPane);
         setVisible(true);

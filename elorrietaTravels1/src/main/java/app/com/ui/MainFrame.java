@@ -2,6 +2,7 @@ package main.java.app.com.ui;
 
 import javax.swing.JFrame;
 
+import main.java.app.com.controllers.LoginPanelController;
 import main.java.app.com.controllers.MainController;
 import main.java.app.com.controllers.WelcomePanelController;
 
@@ -21,8 +22,12 @@ public class MainFrame extends JFrame {
 
          add(mainController.getWelcomePanel());
          add(mainController.getLoginPanel());
+         add(mainController.getNewProfilePanel());
+         add(mainController.getNuevoViajePanel());
+         add(mainController.getEventPanel());
          
-         new WelcomePanelController(mainController);	
+         new WelcomePanelController(mainController);
+         new LoginPanelController(mainController);
          ///initial panel setup
          mainController.hideAllPanels();
          mainController.getWelcomePanel().setVisible(true);
