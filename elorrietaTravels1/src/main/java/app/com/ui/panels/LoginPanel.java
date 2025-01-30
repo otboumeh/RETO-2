@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import main.java.app.com.ui.customComponents.customButtons.CustomCloseButton;
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
 public class LoginPanel extends JPanel{

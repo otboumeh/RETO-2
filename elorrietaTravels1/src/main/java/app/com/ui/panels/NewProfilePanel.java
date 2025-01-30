@@ -1,7 +1,6 @@
 package main.java.app.com.ui.panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
@@ -10,7 +9,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import com.toedter.calendar.JDateChooser;
 import main.java.app.com.ui.customComponents.CustomComboBox;
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
@@ -18,8 +16,8 @@ public class NewProfilePanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String[] agencyTypes = {"Mayorista", "Minorista", "Mayorista-minorista"};
-	private String[] numEmployees = {"de 1 a 5", "de 1 a 10", "de 1 a 20"}; 
+	private String[] agencyTypes = {"Elige una Opcion", "Mayorista", "Minorista", "Mayorista-minorista"};
+	private String[] numEmployees = {"Elige una Opcion", "Entre 2 a 10", "Entre 10 a 100", "Entre 100 a 1000"}; 
 	
 	private ImageIcon backgroundImage = new ImageIcon("src/main/resources/images/loginBackground.jpg");
 	private JLabel backgroundLabel = new JLabel(backgroundImage);

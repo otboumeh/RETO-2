@@ -3,8 +3,10 @@ package main.java.app.com.ui;
 import javax.swing.JFrame;
 
 import main.java.app.com.controllers.LoginPanelController;
-import main.java.app.com.controllers.MainController;
+import main.java.app.com.controllers.NewProfilePanelController;
+import main.java.app.com.controllers.TripsAndEventsPanelController;
 import main.java.app.com.controllers.WelcomePanelController;
+import main.java.app.com.controllers.mainController.MainController;
 
 public class MainFrame extends JFrame {
 
@@ -18,19 +20,21 @@ public class MainFrame extends JFrame {
          setLocationRelativeTo(null);
          setLayout(null);
          
-         MainController mainController = new MainController();
-
-         add(mainController.getWelcomePanel());
-         add(mainController.getLoginPanel());
-         add(mainController.getNewProfilePanel());
-         add(mainController.getNuevoViajePanel());
-         add(mainController.getEventPanel());
+         add(MainController.getInstance().getWelcomePanel());
+         add(MainController.getInstance().getLoginPanel());
+         add(MainController.getInstance().getNewProfilePanel());
+         add(MainController.getInstance().getNuevoViajePanel());
+         add(MainController.getInstance().getEventPanel());
+         add(MainController.getInstance().getTripsAndEventsPanel());
          
-         new WelcomePanelController(mainController);
-         new LoginPanelController(mainController);
+         new WelcomePanelController();
+         new LoginPanelController();
+         new NewProfilePanelController();
+         new TripsAndEventsPanelController();
+
          ///initial panel setup
-         mainController.hideAllPanels();
-         mainController.getWelcomePanel().setVisible(true);
+         MainController.getInstance().hideAllPanels();
+         MainController.getInstance().getWelcomePanel().setVisible(true);
          
          
          setResizable(false);

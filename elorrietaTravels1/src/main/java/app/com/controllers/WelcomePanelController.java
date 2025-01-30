@@ -3,16 +3,15 @@ package main.java.app.com.controllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import main.java.app.com.controllers.mainController.MainController;
 import main.java.app.com.ui.panels.WelcomePanel;
 
 public class WelcomePanelController {
 	
-	private final MainController mainController;
 	
-	public WelcomePanelController(MainController mainController){
-		this.mainController = mainController;
+	public WelcomePanelController(){
 		
-        WelcomePanel welcomePanel = mainController.getWelcomePanel();
+        WelcomePanel welcomePanel = MainController.getInstance().getWelcomePanel();
 
 		welcomePanel.getBackgroundLabel().addMouseListener(new MouseAdapter() {
             @Override
@@ -24,8 +23,8 @@ public class WelcomePanelController {
 	}
 	
 	private void handleWelcomePanelClick() {
-		mainController.hideAllPanels();
-		mainController.getLoginPanel().setVisible(true);
+		MainController.getInstance().hideAllPanels();
+		MainController.getInstance().getLoginPanel().setVisible(true);
 	}
 
 }
