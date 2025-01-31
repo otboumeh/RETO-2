@@ -35,7 +35,7 @@ public class MainFrame extends JFrame {
 
          ///initial panel setup
          MainController.getInstance().hideAllPanels();
-         MainController.getInstance().getNewEvent().setVisible(true);
+         MainController.getInstance().getNuevoViajePanel().setVisible(true);
          
          
          setResizable(false);

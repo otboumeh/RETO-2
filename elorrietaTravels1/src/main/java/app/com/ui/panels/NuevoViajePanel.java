@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
 
@@ -30,9 +32,11 @@ public class NuevoViajePanel  extends JPanel{
 	private JLabel servicesLabel = new JLabel("Servicios no inc.");
 	private JLayeredPane layeredPane = new JLayeredPane();
 	JTextField nameField = new JTextField();
-	JTextField typeField = new JTextField();
-	JTextField endDateField = new JTextField("dd/MM/yyyy");
-    JTextField startDateField = new JTextField("dd/MM/yyyy");
+    String[] Tipos = {"Viaje Simple", "..", "..", "..", ".."};
+
+	JComboBox<String> typeField =  new JComboBox<>(Tipos);
+	JDateChooser endDateField = new JDateChooser() ;
+	JDateChooser startDateField = new JDateChooser();
     JTextField daysField = new JTextField();
     String[] countries = {"España", "Francia", "Italia", "Alemania", "Reino Unido"};
     JComboBox<String> countryComboBox = new JComboBox<>(countries);
@@ -51,7 +55,7 @@ public class NuevoViajePanel  extends JPanel{
 	        layeredPane.setBounds(0, 0, 1200, 800);
 	        
 	        int centerX = 200;
-	        int startY = 150;
+	        int startY = 70;
 	        int labelWidth = 200;
 	        int labelHeight = 30;
 	        int verticalSpacing = 30;
@@ -131,12 +135,12 @@ public class NuevoViajePanel  extends JPanel{
 	   public JTextField getNameField() {
 			return nameField;
 		}
-	   public JTextField getTypeField() {
+	   public JComboBox<String> getTypeField() {
 				return typeField;
 			}  
-	   public JTextField getEndDateField() {
+	   public JDateChooser getEndDateField() {
 				return endDateField;
-			}   public JTextField getStartDateField() {
+			}   public JDateChooser getStartDateField() {
 				return startDateField;
 			}   
 			public JTextField getDaysField() {
