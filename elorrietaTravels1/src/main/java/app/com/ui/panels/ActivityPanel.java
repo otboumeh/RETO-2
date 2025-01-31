@@ -1,6 +1,7 @@
 package main.java.app.com.ui.panels;
 
 
+import java.awt.Color;
 import java.awt.Font;
 
 
@@ -9,6 +10,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
 
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
@@ -29,7 +31,7 @@ public class ActivityPanel extends JPanel {
 
   
     private JTextArea descriptionInput = new JTextArea();
-    private JTextField dateInput = new JTextField();
+	private JDateChooser dateInput = new JDateChooser();
     private JTextField priceInput = new JTextField();
 
     private CustomUsualButton saveButton = new CustomUsualButton("Guardar");
@@ -46,25 +48,29 @@ public class ActivityPanel extends JPanel {
         
         // Configuración de etiquetas y campos
        
-        descriptionLabel.setBounds(42, 300, 200, 30);
+        descriptionLabel.setBounds(20, 200, 400, 30);
         descriptionLabel.setFont(new Font("Arial", Font.BOLD, 20));
+    	descriptionLabel.setForeground(Color.BLACK);
 
-        descriptionInput.setBounds(250, 300, 300, 100);
+        descriptionInput.setBounds(231, 200, 250, 100);
         descriptionInput.setLineWrap(true);
         descriptionInput.setWrapStyleWord(true);
 
-        dateLabel.setBounds(42, 420, 150, 40);
+        dateLabel.setBounds(20, 340, 150, 40);
         dateLabel.setFont(new Font("Arial", Font.BOLD, 20));
+    	dateLabel.setForeground(Color.BLACK);
 
-        dateInput.setBounds(250, 420, 150, 40);
+        dateInput.setBounds(231, 340, 250, 40);
 
-        priceLabel.setBounds(42, 470, 150, 40);
+        priceLabel.setBounds(20, 450, 150, 40);
         priceLabel.setFont(new Font("Arial", Font.BOLD, 20));
+    	priceLabel.setForeground(Color.BLACK);
 
-        priceInput.setBounds(250, 470, 150, 40);
+        priceInput.setBounds(231, 450, 250, 40);
 
-        saveButton.setBounds(42, 550, 140, 40);
-        cancelButton.setBounds(42, 550, 140, 40);
+        saveButton.setBounds(150, 550, 200, saveButton.getHeight());
+        cancelButton.setBounds(400, 550, 200, cancelButton.getHeight());;
+
 
         // Añadir componentes al panel
         layeredPane.setBounds(0, 0, 1200, 800);
@@ -91,7 +97,7 @@ public class ActivityPanel extends JPanel {
         return descriptionInput;
     }
 
-    public JTextField getDateInput() {
+    public JDateChooser getDateInput() {
         return dateInput;
     }
 

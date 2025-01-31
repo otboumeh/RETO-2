@@ -9,6 +9,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 public class ReturnFlightPanel extends JPanel{ 
 	
 	
@@ -22,7 +24,8 @@ public class ReturnFlightPanel extends JPanel{
 	private JLabel totalPriceLabel = new JLabel("Precio total");
 	private JLabel returnTimeLabel = new JLabel("Horario de vuelta");
 	private JLabel returnDurationLabel = new JLabel("Duración de vuelta");
-	
+	private JDateChooser dateChooserReturn = new JDateChooser();
+
 	private JTextField flightIdInput = new JTextField();
 	private JTextField returnAirlineInput = new JTextField();
 	private JTextField totalPriceInput = new JTextField();
@@ -40,36 +43,37 @@ public ReturnFlightPanel() {
     	backgroundLabel.setBounds(0, 0, 1200, 800);
     	
     	
-    	returnDateLabel.setBounds(600, 270, 250, 40);
+    	returnDateLabel.setBounds(600, 300, 250, 40);
     	returnDateLabel.setForeground(Color.BLACK);
     	returnDateLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	flightIdLabel.setBounds(600, 320, 250, 40);
+    	flightIdLabel.setBounds(600, 350, 250, 40);
     	flightIdLabel.setForeground(Color.BLACK);
     	flightIdLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	returnAirlineLabel.setBounds(600, 370, 250, 40);
+    	returnAirlineLabel.setBounds(600, 400, 250, 40);
     	returnAirlineLabel.setForeground(Color.BLACK);
     	returnAirlineLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	totalPriceLabel.setBounds(600, 420, 250, 40);
+    	totalPriceLabel.setBounds(600, 450, 250, 40);
     	totalPriceLabel.setForeground(Color.BLACK);
     	totalPriceLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	returnTimeLabel.setBounds(600, 470, 250, 40);
+    	returnTimeLabel.setBounds(600, 500, 250, 40);
     	returnTimeLabel.setForeground(Color.BLACK);
     	returnTimeLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	returnDurationLabel.setBounds(600, 520, 250, 40);
+    	returnDurationLabel.setBounds(600, 550, 250, 40);
     	returnDurationLabel.setForeground(Color.BLACK);
     	returnDurationLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
     
-    	flightIdInput.setBounds(858, 320, 200, 40);
-    	returnAirlineInput.setBounds(858, 370, 200, 40);
-    	totalPriceInput.setBounds(858, 420, 200, 40);
-    	returnTimeInput.setBounds(858, 470, 200, 40);
-    	returnDurationInput.setBounds(858, 520, 200, 40);
+    	dateChooserReturn.setBounds(858, 300, 200, 40);
+    	flightIdInput.setBounds(858, 350, 200, 40);
+    	returnAirlineInput.setBounds(858, 400, 200, 40);
+    	totalPriceInput.setBounds(858, 450, 200, 40);
+    	returnTimeInput.setBounds(858, 500, 200, 40);
+    	returnDurationInput.setBounds(858, 550, 200, 40);
     	
         layeredPane.setBounds(0, 0, 1200, 800);        
         layeredPane.add(backgroundLabel, Integer.valueOf(0));
@@ -79,6 +83,7 @@ public ReturnFlightPanel() {
         layeredPane.add(totalPriceLabel, Integer.valueOf(1));
         layeredPane.add(returnTimeLabel, Integer.valueOf(1));
         layeredPane.add(returnDurationLabel, Integer.valueOf(1));
+        layeredPane.add(dateChooserReturn, Integer.valueOf(1));
         layeredPane.add(flightIdInput, Integer.valueOf(1));
         layeredPane.add(returnAirlineInput, Integer.valueOf(1));
         layeredPane.add(totalPriceInput, Integer.valueOf(1));

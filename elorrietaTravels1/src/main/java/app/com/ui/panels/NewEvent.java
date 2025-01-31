@@ -14,7 +14,10 @@ import main.java.app.com.ui.customComponents.CustomComboBox;
 public class NewEvent extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	
+	private FlightPanel flightPanel = new FlightPanel();
+	private ReturnFlightPanel returnflightPanel = new ReturnFlightPanel();
+	private HotelPanel hotelPanel = new HotelPanel();
+	private ActivityPanel activitypanel = new ActivityPanel();
 	private String[] eventTypes = {"Elige una opción", "Vuelo", "Hotel", "Actividad"};
 	
 	private ImageIcon backgroundImage = new ImageIcon("src/main/resources/images/loginBackground.jpg");
@@ -36,17 +39,17 @@ public NewEvent() {
     	backgroundLabel.setBounds(0, 0, 1200, 800);
     	
     	
-    	eventNameLabel.setBounds(42, 200, 250, 40);
+    	eventNameLabel.setBounds(20, 75, 250, 40);
     	eventNameLabel.setForeground(Color.BLACK);
     	eventNameLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	eventTypesLabel.setBounds(42, 250, 250, 40);
+    	eventTypesLabel.setBounds(20, 125, 250, 40);
     	eventTypesLabel.setForeground(Color.BLACK);
     	eventTypesLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
     	
-    	eventNameInput.setBounds(300, 200, 200, 40);
-    	eventTypesInput.setBounds(300, 250, 200, 40);
+    	eventNameInput.setBounds(231, 75, 250, 40);
+    	eventTypesInput.setBounds(231, 125, 250, 40);
 
     	   	
 
@@ -58,7 +61,12 @@ public NewEvent() {
         layeredPane.add(eventTypesLabel, Integer.valueOf(1));
         layeredPane.add(eventNameInput, Integer.valueOf(1));
         layeredPane.add(eventTypesInput, Integer.valueOf(1));
-       
+        //layeredPane.add(flightPanel, Integer.valueOf(1));
+        //layeredPane.add(returnflightPanel, Integer.valueOf(1));
+        //layeredPane.add(hotelPanel, Integer.valueOf(1));
+        layeredPane.add(activitypanel, Integer.valueOf(1));
+
+
     	add(layeredPane);
         setVisible(true);
 	}

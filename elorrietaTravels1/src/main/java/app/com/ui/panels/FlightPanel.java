@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
 public class FlightPanel extends JPanel{
@@ -34,7 +36,8 @@ public class FlightPanel extends JPanel{
 	JComboBox<String> traject =  new JComboBox<>(chemin);
 	 JComboBox<String> origin =  new JComboBox<>(airport);
 	 JComboBox<String> destination =  new JComboBox<>(airport);
-    JTextField startDateField = new JTextField("dd/MM/yyyy");
+	private JDateChooser dateChooserIda = new JDateChooser();
+
     JTextField code = new JTextField();
     JTextField aeroline =  new JTextField();;
     JTextArea price = new JTextArea();
@@ -43,10 +46,9 @@ public class FlightPanel extends JPanel{
 	private CustomUsualButton searchButton = new CustomUsualButton("Buscar");
 	private CustomUsualButton saveButton = new CustomUsualButton("Guardar");
 	private CustomUsualButton cancelButton = new CustomUsualButton("Cancelar");
-
 	public FlightPanel() {
 		 setLayout(null);
-	        setBounds(0, 0, 1200, 800);        
+	        setBounds(0, 0, 600, 800);        
 	    
 	    	backgroundLabel.setBounds(0, 0, 1200, 800);
 	        layeredPane.setBounds(0, 0, 1200, 800);
@@ -54,8 +56,8 @@ public class FlightPanel extends JPanel{
 	        int centerX = 20;
 	        int startY = 200;
 	        int labelWidth = 200;
-	        int labelHeight = 30;
-	        int verticalSpacing = 30;
+	        int labelHeight = 40;
+	        int verticalSpacing = 10;
 
 	        nameLabel.setBounds(centerX, startY, labelWidth, labelHeight);
 	        nameLabel.setForeground(Color.BLACK);
@@ -85,10 +87,10 @@ public class FlightPanel extends JPanel{
 	        servicesLabel.setForeground(Color.BLACK);
 	        servicesLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-	        startDateField.setBounds(centerX + labelWidth + 10, startY + 2 * (labelHeight + verticalSpacing), 300, labelHeight);
+	        destination.setBounds(centerX + labelWidth + 10, startY + 2 * (labelHeight + verticalSpacing), 300, labelHeight);
 	        aeroline.setBounds(centerX + labelWidth + 10, startY + 5 * (labelHeight + verticalSpacing), 300, labelHeight);
 	        code.setBounds(centerX + labelWidth + 10, startY + 4 * (labelHeight + verticalSpacing), 300, labelHeight);
-	        destination.setBounds(centerX + labelWidth + 10, startY + 3 * (labelHeight + verticalSpacing), 300, labelHeight);
+	        dateChooserIda.setBounds(centerX + labelWidth + 10, startY + 3 * (labelHeight + verticalSpacing), 300, labelHeight);
 	        origin.setBounds(centerX + labelWidth + 10, startY + 1 * (labelHeight + verticalSpacing), 300, labelHeight);
 	        traject.setBounds(centerX + labelWidth + 10, startY, 300, labelHeight);
 	        leavingTime.setBounds(centerX + labelWidth + 10, startY + 6 * (labelHeight + verticalSpacing), 300, labelHeight);
@@ -96,7 +98,7 @@ public class FlightPanel extends JPanel{
 	        
 	        saveButton.setBounds(200, 700, saveButton.getWidth(), saveButton.getHeight());
 	        cancelButton.setBounds(400, 700, cancelButton.getWidth(), cancelButton.getHeight());
-	        searchButton.setBounds(650, 200, searchButton.getWidth(), searchButton.getHeight());
+	        searchButton.setBounds(300, 632, searchButton.getWidth(), searchButton.getHeight());
 	        durationLabel.setBounds(centerX, startY + 7 * (labelHeight + verticalSpacing), 300, labelHeight);
 	        durationLabel.setForeground(Color.BLACK);
 	        durationLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -107,7 +109,7 @@ public class FlightPanel extends JPanel{
 	        layeredPane.add(destination, Integer.valueOf(1));
 	        layeredPane.add(origin, Integer.valueOf(1));
 	        layeredPane.add(traject, Integer.valueOf(1));
-	        layeredPane.add(startDateField, Integer.valueOf(1));
+	        layeredPane.add(dateChooserIda, Integer.valueOf(1));
 	        layeredPane.add(nameLabel, Integer.valueOf(1));
 	        layeredPane.add(typeLabel, Integer.valueOf(1));
 	        layeredPane.add(startLabel, Integer.valueOf(1));
@@ -155,8 +157,8 @@ public class FlightPanel extends JPanel{
 	public JComboBox<String> getDestination() {
 		return destination;
 	}
-	public JTextField getStartDateField() {
-	    return startDateField;
+	public JDateChooser getStartDateField() {
+	    return dateChooserIda;
 	}
 	public JTextField getCode() {
 	    return code;

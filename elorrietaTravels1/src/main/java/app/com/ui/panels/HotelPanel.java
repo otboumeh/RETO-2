@@ -9,6 +9,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import main.java.app.com.ui.customComponents.CustomComboBox;
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
@@ -29,7 +31,10 @@ public class HotelPanel extends JPanel{
 	private JTextField cityInput = new JTextField();
 	private JTextField priceInput = new JTextField();
     private CustomComboBox roomTypesInput = new CustomComboBox(roomTypes);
+	private JDateChooser dateCheckIn = new JDateChooser();
+	private JDateChooser dateCheckOut = new JDateChooser();
 	private CustomUsualButton searchButton = new CustomUsualButton("Buscar Alojamiento");
+	private CustomUsualButton cancelButton = new CustomUsualButton("Cancelar");
 	private JLayeredPane layeredPane = new JLayeredPane();
 	
 public HotelPanel() {
@@ -65,7 +70,12 @@ public HotelPanel() {
     	roomTypesInput.setBounds(300, 200, 200, 40);
     	cityInput.setBounds(300, 250, 200, 40);
     	priceInput.setBounds(300, 300, 200, 40);
+    	dateCheckIn.setBounds(300, 350, 200, 40);
+    	dateCheckOut.setBounds(300, 400, 200, 40);
+
     	searchButton.setBounds(150, 450, 200, searchButton.getHeight());
+    	cancelButton.setBounds(400, 450, 200, cancelButton.getHeight());
+
 
     	   	
 
@@ -81,7 +91,11 @@ public HotelPanel() {
         layeredPane.add(cityInput, Integer.valueOf(1));
         layeredPane.add(priceInput, Integer.valueOf(1));
         layeredPane.add(roomTypesInput, Integer.valueOf(1));
+        layeredPane.add(dateCheckIn, Integer.valueOf(1));
+        layeredPane.add(dateCheckOut, Integer.valueOf(1));
         layeredPane.add(searchButton, Integer.valueOf(1));
+        layeredPane.add(cancelButton, Integer.valueOf(1));
+
 
         
         

@@ -1,7 +1,9 @@
 package main.java.app.com.controllers.mainController;
 
 import main.java.app.com.ui.panels.ActivityPanel;
+import main.java.app.com.ui.panels.FlightPanel;
 import main.java.app.com.ui.panels.LoginPanel;
+import main.java.app.com.ui.panels.NewEvent;
 import main.java.app.com.ui.panels.NewProfilePanel;
 import main.java.app.com.ui.panels.NuevoViajePanel;
 import main.java.app.com.ui.panels.TripsAndEventsPanel;
@@ -17,14 +19,15 @@ public class MainController {
 	private NuevoViajePanel nuevoViajePanel;
 	private ActivityPanel eventPanel;
 	private TripsAndEventsPanel tripsAndEventsPanel;
-
+	private NewEvent newEvent;
 	private MainController() {
 		welcomePanel = new WelcomePanel();
 		loginPanel = new LoginPanel();
 		newProfilePanel = new NewProfilePanel();
 		nuevoViajePanel = new NuevoViajePanel();
 		eventPanel = new ActivityPanel();
-		tripsAndEventsPanel = new TripsAndEventsPanel(); 
+		tripsAndEventsPanel = new TripsAndEventsPanel();
+		newEvent = new NewEvent();
 	}
 
 	public static MainController getInstance() {
@@ -56,7 +59,9 @@ public class MainController {
 	public TripsAndEventsPanel getTripsAndEventsPanel() {
 		return tripsAndEventsPanel;
 	}
-	
+	public NewEvent getNewEvent() {
+		return newEvent;
+	}
 	
 //////////////// metodos generales ////////////
 	
@@ -67,5 +72,6 @@ public class MainController {
 		nuevoViajePanel.setVisible(false);
 		eventPanel.setVisible(false);
 		tripsAndEventsPanel.setVisible(false);
+		newEvent.setVisible(false);
 	}
 }

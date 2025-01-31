@@ -26,7 +26,8 @@ public class MainFrame extends JFrame {
          add(MainController.getInstance().getNuevoViajePanel());
          add(MainController.getInstance().getEventPanel());
          add(MainController.getInstance().getTripsAndEventsPanel());
-         
+         add(MainController.getInstance().getNewEvent());
+
          new WelcomePanelController();
          new LoginPanelController();
          new NewProfilePanelController();
@@ -34,7 +35,7 @@ public class MainFrame extends JFrame {
 
          ///initial panel setup
          MainController.getInstance().hideAllPanels();
-         MainController.getInstance().getWelcomePanel().setVisible(true);
+         MainController.getInstance().getNewEvent().setVisible(true);
          
          
          setResizable(false);
