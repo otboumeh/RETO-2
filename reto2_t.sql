@@ -1,12 +1,12 @@
-CREATE DATABASE Reto2_t
-COLLATE utf8mb4_spanish_ci;
-
+-- Drop existing tables to reset the database
+DROP DATABASE IF EXISTS Reto2_t;
+CREATE DATABASE Reto2_t COLLATE utf8mb4_spanish_ci;
 USE Reto2_t;
--- ///////////////// tipo agencia ////////////////////
 
+-- ///////////////// Tipo Agencia ////////////////////
 CREATE TABLE TipoAgencia(
-Cod_Tipo CHAR(2) PRIMARY KEY,
-Tipo VARCHAR(30)
+    Cod_Tipo CHAR(2) PRIMARY KEY,
+    Tipo VARCHAR(30) NOT NULL
 );
 
 INSERT INTO TipoAgencia (Cod_Tipo, Tipo) VALUES 
@@ -14,42 +14,40 @@ INSERT INTO TipoAgencia (Cod_Tipo, Tipo) VALUES
 ('A2', 'Minorista'),
 ('A3', 'Mayorista-minorista');
 
--- ///////////////// descripcion de empleados //////////////////
-
+-- ///////////////// Descripción de Empleados //////////////////
 CREATE TABLE DescEmpleados(
-	Cod_descEmp CHAR(2) PRIMARY KEY,
-	DescripcionEmp VARCHAR(50) NOT NULL
+    Cod_DescEmp CHAR(2) PRIMARY KEY,
+    DescripcionEmp VARCHAR(50) NOT NULL
 );
 
 INSERT INTO DescEmpleados (Cod_DescEmp, DescripcionEmp) VALUES 
-('L1', '5 empleados maximo de 1 a 5'),
-('L2', '10 empleados maximo de 1 a 10'),
-('L3', '20 empleados maximo de 1 a 20');
+('L1', '5 empleados máximo de 1 a 5'),
+('L2', '10 empleados máximo de 1 a 10'),
+('L3', '20 empleados máximo de 1 a 20');
 
--- ///////////////// agencia ////////////////////////
-
+-- ///////////////// Agencia ////////////////////////
 CREATE TABLE Agencia(
-	Id_Agencia VARCHAR(5) PRIMARY KEY NOT NULL,
-	NomAgencia TEXT NOT NULL,
-	TipoAgencia TEXT NOT NULL,
-	ColorAgencia VARCHAR(7) NOT NULL ,
-	Cod_DescEmp CHAR(2) NOT NULL ,
-	Logo TEXT NOT NULL,
-	Pass VARCHAR(40) NOT NULL,
-    CONSTRAINT FK_Cod_DescEmp FOREIGN KEY (Cod_DescEmp) REFERENCES DescEmpleados(Cod_DescEmp)
+    Id_Agencia VARCHAR(5) PRIMARY KEY NOT NULL,
+    NomAgencia VARCHAR(50) NOT NULL,
+    Cod_Tipo CHAR(2) NOT NULL,
+    ColorAgencia VARCHAR(7) NOT NULL,
+    Cod_DescEmp CHAR(2) NOT NULL,
+    Logo TEXT NOT NULL,
+    Pass VARCHAR(40) NOT NULL,
+    CONSTRAINT FK_Cod_DescEmp FOREIGN KEY (Cod_DescEmp) REFERENCES DescEmpleados(Cod_DescEmp),
+    CONSTRAINT FK_Cod_Tipo FOREIGN KEY (Cod_Tipo) REFERENCES TipoAgencia(Cod_Tipo)
 );
 
-INSERT INTO Agencia (Id_Agencia, NomAgencia, TipoAgencia, ColorAgencia, Cod_DescEmp, Logo, Pass)
+INSERT INTO Agencia (Id_Agencia, NomAgencia, Cod_Tipo, ColorAgencia, Cod_DescEmp, Logo, Pass)
 VALUES 
-('AG001', 'Agencia Viajar', 'Agencias de viajes física', '#FF5733', 'L1', 'https://images.app.goo.gl/Lc42zBdTBWT6jCjX6', 'pass@123'),
-('AG002', 'Turismo Total', 'Agencias de viajes en línea', '#33FF57', 'L2', 'https://images.app.goo.gl/Lc42zBdTBWT6jCjX6', 'pass@456'),
-('AG003', 'ExploraMundo', 'Agencias de viajes especializadas', '#3357FF', 'L3', 'https://images.app.goo.gl/Lc42zBdTBWT6jCjX6', 'pass@789');
+('AG001', 'Agencia Viajar', 'A1', '#A9A9A9', 'L1', 'https://img.freepik.com/vector-gratis/tipografia-viaje-o-vector-logo_53876-43334.jpg?t=st=1738506941~exp=1738510541~hmac=70a3e587d7101d06aed0108db224a404dab81e95288ec281370364072a81f59f&w=740', 'pass@123'),
+('AG002', 'Turismo Total', 'A2', '#4B0082', 'L2', 'https://img.freepik.com/vector-gratis/fondo-plano-viaje-vintage_23-2148189177.jpg?t=st=1738506896~exp=1738510496~hmac=d155f787cc6de9464587258e0cc71196611e9cc2b7c83c630bb6b248d0554485&w=740', 'pass@456'),
+('AG003', 'ExploraMundo', 'A3', '#A52A2A', 'L3', 'https://img.freepik.com/vector-gratis/logotipo-viaje-detallado_23-2148619622.jpg?t=st=1738506970~exp=1738510570~hmac=f8516def09f612eafeaad5f63433868aa4fff54626f640f7c3309ae41aeede6d&w=740', 'pass@789');
 
--- //////////////////////// tipo viaje /////////////////////////
+-- //////////////////////// Tipo Viaje /////////////////////////
 CREATE TABLE TipoViaje (
-Cod_TipoViaje CHAR(2) PRIMARY KEY, 
-TipoViaje VARCHAR(70) NOT NULL
-
+    Cod_TipoViaje CHAR(2) PRIMARY KEY, 
+    TipoViaje VARCHAR(70) NOT NULL
 );
 
 INSERT INTO TipoViaje (Cod_TipoViaje, TipoViaje) VALUES 
@@ -59,185 +57,157 @@ INSERT INTO TipoViaje (Cod_TipoViaje, TipoViaje) VALUES
 ('B4', 'Grandes viajes (destinos exóticos + vuelo + alojamiento)'),
 ('B5', 'Escapada');
 
--- /////////////////////////////// viaje /////////////////////
-
+-- /////////////////////////////// Viaje /////////////////////
 CREATE TABLE Viaje(
-	Id_Viaje VARCHAR(5) PRIMARY KEY NOT NULL,
-	NomViaje TEXT NOT NULL,
-	Cod_TipoViaje CHAR(2) NOT NULL,
-	FechInicio DATE NOT NULL ,
-	FechFin DATE NOT NULL ,
-	NumDias INT NOT NULL,
-	PaisDestino VARCHAR(40) NOT NULL,
-	Descripcion TEXT NOT NULL,
-	ServiciosnoIncl TEXT NOT NULL,
-	Id_Agencia  VARCHAR(5) NOT NULL,
-	CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia),
-	CONSTRAINT FK_Cod_TipoViaje FOREIGN KEY(Cod_TipoViaje) REFERENCES TipoViaje(Cod_TipoViaje)
-
+    Id_Viaje VARCHAR(5) PRIMARY KEY NOT NULL,
+    NomViaje VARCHAR(100) NOT NULL,
+    Cod_TipoViaje CHAR(2) NOT NULL,
+    FechInicio DATE NOT NULL,
+    FechFin DATE NOT NULL,
+    NumDias INT NOT NULL,
+    PaisDestino VARCHAR(40) NOT NULL,
+    Descripcion TEXT NOT NULL,
+    ServiciosnoIncl TEXT NOT NULL,
+    Id_Agencia VARCHAR(5) NOT NULL,
+    CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia),
+    CONSTRAINT FK_Cod_TipoViaje FOREIGN KEY(Cod_TipoViaje) REFERENCES TipoViaje(Cod_TipoViaje)
 );
 
 INSERT INTO Viaje (Id_Viaje, NomViaje, Cod_TipoViaje, FechInicio, FechFin, NumDias, PaisDestino, Descripcion, ServiciosnoIncl, Id_Agencia)
 VALUES 
-('VI001', 'Aventura en Costa Rica', 'B4', '2025-03-01', '2025-03-10', 10, 'Costa Rica', 'Una experiencia llena de naturaleza y deportes extremos.', 'Comidas no incluidas', 'AG001'),
-('VI002', 'Tour por Europa', 'B5', '2025-04-01', '2025-04-20', 20, 'Francia, Italia, España', 'Visita a los lugares más emblemáticos de Europa.', 'Transporte interno no incluido', 'AG002'),
-('VI003', 'Relax en el Caribe', 'B1', '2025-06-01', '2025-06-10', 10, 'República Dominicana', 'Vacaciones de descanso en las mejores playas del Caribe.', 'Excursiones no incluidas', 'AG003');
+('VI001', 'Aventura en Costa Rica', 'B5', '2025-03-01', '2025-03-10', 10, 'Costa Rica', 'Naturaleza y deportes extremos.', 'Comidas no incluidas', 'AG001'),
+('VI002', 'Tour por Europa', 'B3', '2025-04-01', '2025-04-20', 20, 'Francia, Italia, España', 'Visitas culturales', 'Transporte interno no incluido', 'AG002'),
+('VI003', 'Relax en el Caribe', 'B2', '2025-06-01', '2025-06-10', 10, 'República Dominicana', 'Playas paradisíacas.', 'Excursiones no incluidas', 'AG003');
 
---  ////////////////// evento //////////////////////////// 
-
-CREATE TABLE Evento (
-	Id_Evento CHAR(5) PRIMARY KEY,
-    Nom_Evento VARCHAR(30) NOT NULL,
-    TipoEvento ENUM("Vuelo","Alojamiento","Actividad") NOT NULL,
-    Id_Viaje CHAR(5) NOT NULL,
-    CONSTRAINT FK_Id_Viaje FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
-);
-
-INSERT INTO Evento (Id_Evento, Nom_Evento, TipoEvento, Id_Viaje)
-VALUES 
-('EV001', 'Vuelo a Costa Rica', 'Vuelo', 'VI001'),
-('EV002', 'Alojamiento en París', 'Alojamiento', 'VI002'),
-('EV003', 'Actividad en Punta Cana', 'Actividad', 'VI003'),
-('EV004', 'Plan Ida', 'Vuelo', 'VI001'),
-('EV005', 'Plan Ida y Vuelta', 'Vuelo', 'VI002'),
-('EV006', 'Hotel Sol', 'Alojamiento', 'VI001'),
-('EV007', 'Resort Caribe', 'Alojamiento', 'VI002'),
-('EV008', 'Villa Toscana', 'Alojamiento', 'VI003'),
-('EV009', 'Senderismo en Costa Rica', 'Actividad', 'VI001'),
-('EV010', 'Tour por el Coliseo Romano', 'Actividad', 'VI002');
-
--- ///////////////////////////////pais//////////////////
-
+-- ////////////////pais///////
 CREATE TABLE Pais(
-	Cod_Pais CHAR(2) NOT NULL PRIMARY KEY,
-	NomPais VARCHAR(30) NOT NULL
+    Cod_Pais CHAR(2) PRIMARY KEY,
+    NomPais VARCHAR(30) NOT NULL
 );
 
 INSERT INTO Pais (Cod_Pais, NomPais) VALUES 
-('AR', 'ARGENTINA'),
-('AT', 'AUSTRIA'),
-('BE', 'BÉLGICA'),
-('BR', 'BRASIL'),
-('CA', 'CANADA'),
-('CH', 'SUIZA'),
-('CN', 'CHINA'),
-('CU', 'CUBA'),
-('CY', 'CHIPRE'),
-('CZ', 'REPUBLICA CHECA'),
-('DE', 'ALEMANIA'),
-('DK', 'DINAMARCA'),
-('EE', 'ESTONIA'),
-('EG', 'EGIPTO'),
-('ES', 'ESPAÑA'),
-('FI', 'FINLANDIA'),
-('FR', 'FRANCIA'),
-('GB', 'REINO UNIDO'),
-('GR', 'GRECIA'),
-('GT', 'GUATEMALA'),
-('HK', 'HONG-KONG'),
-('HR', 'CROACIA'),
-('HU', 'HUNGRIA'),
-('ID', 'INDONESIA'),
-('IE', 'IRLANDA'),
-('IL', 'ISRAEL'),
-('IN', 'INDIA'),
-('IS', 'ISLANDIA'),
-('IT', 'ITALIA'),
-('JM', 'JAMAICA'),
-('JP', 'JAPÓN'),
-('KE', 'KENIA'),
-('LU', 'LUXEMBURGO'),
-('MA', 'MARRUECOS'),
-('MC', 'MÓNACO'),
-('MT', 'MALTA'),
-('MV', 'MALDIVAS'),
-('MX', 'MÉXICO'),
-('NL', 'PAÍSES BAJOS'),
-('NO', 'NORUEGA'),
-('PA', 'PANAMÁ'),
-('PE', 'PERÚ'),
-('PL', 'POLONIA'),
-('PR', 'PUERTO RICO'),
-('PT', 'PORTUGAL'),
-('QA', 'QATAR'),
-('RO', 'RUMANIA'),
-('RU', 'RUSIA'),
-('SC', 'SEYCHELLES'),
-('SE', 'SUECIA'),
-('SG', 'SINGAPUR'),
-('TH', 'TAILANDIA'),
-('TN', 'TÚNEZ'),
-('TR', 'TURQUÍA'),
-('TZ', 'TANZANIA (INCLUYE ZANZIBAR)'),
-('US', 'ESTADOS UNIDOS'),
-('VE', 'VENEZUELA'),
-('VN', 'VIETNAM'),
-('ZA', 'SUDÁFRICA'),
-('CO', 'COLOMBIA'),
-('EC', 'ECUADOR');
+('AR', 'Argentina'),
+('AT', 'Austria'),
+('BE', 'Bélgica'),
+('BR', 'Brasil'),
+('CA', 'Canadá'),
+('CH', 'Suiza'),
+('CN', 'China'),
+('CU', 'Cuba'),
+('CY', 'Chipre'),
+('CZ', 'República Checa'),
+('DE', 'Alemania'),
+('DK', 'Dinamarca'),
+('EE', 'Estonia'),
+('EG', 'Egipto'),
+('ES', 'España'),
+('FI', 'Finlandia'),
+('FR', 'Francia'),
+('GB', 'Reino Unido'),
+('GR', 'Grecia'),
+('GT', 'Guatemala'),
+('HK', 'Hong-Kong'),
+('HR', 'Croacia'),
+('HU', 'Hungría'),
+('ID', 'Indonesia'),
+('IE', 'Irlanda'),
+('IL', 'Israel'),
+('IN', 'India'),
+('IS', 'Islandia'),
+('IT', 'Italia'),
+('JM', 'Jamaica'),
+('JP', 'Japón'),
+('KE', 'Kenia'),
+('LU', 'Luxemburgo'),
+('MA', 'Marruecos'),
+('MC', 'Mónaco'),
+('MT', 'Malta'),
+('MV', 'Maldivas'),
+('MX', 'México'),
+('NL', 'Países Bajos'),
+('NO', 'Noruega'),
+('PA', 'Panamá'),
+('PE', 'Perú'),
+('PL', 'Polonia'),
+('PR', 'Puerto Rico'),
+('PT', 'Portugal'),
+('QA', 'Qatar'),
+('RO', 'Rumania'),
+('RU', 'Rusia'),
+('SC', 'Seychelles'),
+('SE', 'Suecia'),
+('SG', 'Singapur'),
+('TH', 'Tailandia'),
+('TN', 'Túnez'),
+('TR', 'Turquía'),
+('TZ', 'Tanzania (Incluye Zanzíbar)'),
+('US', 'Estados Unidos'),
+('VE', 'Venezuela'),
+('VN', 'Vietnam'),
+('ZA', 'Sudáfrica'),
+('CO', 'Colombia'),
+('EC', 'Ecuador');
 
--- /////////////// aeropuerto /////////////////////////
-
+-- //////////// aeropuerto /////////////////
 CREATE TABLE Aeropuerto(
-	Id_Aeropuerto CHAR(3) PRIMARY KEY,
-	Ciudad VARCHAR(50) NOT NULL
+    Id_Aeropuerto CHAR(3) PRIMARY KEY,
+    Ciudad VARCHAR(50) NOT NULL
 );
 
 INSERT INTO Aeropuerto (Id_Aeropuerto, Ciudad) VALUES 
-('ACA', 'MÉXICO (ACAPULCO)'),
+('ACA', 'México (Acapulco)'),
 ('ACE', 'Lanzarote'),
-('AGP', 'MÁLAGA'),
+('AGP', 'Málaga'),
 ('ALC', 'Alicante'),
-('AMM', 'JO (Ammán)'),
-('AMS', 'HOLANDA (Amsterdam)'),
-('ATH', 'GRECIA (Atenas)'),
+('AMM', 'Jordania (Ammán)'),
+('AMS', 'Holanda (Ámsterdam)'),
+('ATH', 'Grecia (Atenas)'),
 ('BCN', 'Barcelona'),
-('BER', 'ALEMANIA (Berlín)'),
+('BER', 'Alemania (Berlín)'),
 ('BIO', 'Bilbao'),
 ('BJZ', 'Badajoz'),
-('BKK', 'TAILANDIA (Bangkok)'),
-('BOG', 'COLOMBIA (Bogotá)'),
+('BKK', 'Tailandia (Bangkok)'),
+('BOG', 'Colombia (Bogotá)'),
 ('BOS', 'Boston'),
-('BRU', 'BÉLGICA (Bruselas)'),
-('BSB', 'BRASIL (Brasilia)'),
-('BUE', 'ARGENTINA (Buenos Aires)'),
-('CAI', 'EGIPTO (El Cairo)'),
-('CAS', 'MARRUECOS (Casablanca)'),
-('CDG', 'FRANCIA (París, Charles de Gaulle)'),
-('CPH', 'DINAMARCA (Copenhague)'),
-('DUB', 'IRLANDA (Dublín)'),
-('DUS', 'ALEMANIA (Düsseldorf)'),
+('BRU', 'Bélgica (Bruselas)'),
+('BSB', 'Brasil (Brasilia)'),
+('BUE', 'Argentina (Buenos Aires)'),
+('CAI', 'Egipto (El Cairo)'),
+('CAS', 'Marruecos (Casablanca)'),
+('CDG', 'Francia (París, Charles de Gaulle)'),
+('CPH', 'Dinamarca (Copenhague)'),
+('DUB', 'Irlanda (Dublín)'),
+('DUS', 'Alemania (Düsseldorf)'),
 ('EAS', 'San Sebastián'),
-('FRA', 'ALEMANIA (Frankfurt)'),
-('GVA', 'SUIZA (Ginebra)'),
-('HAM', 'ALEMANIA (Hamburgo)'),
-('HEL', 'FINLANDIA (Helsinki)'),
+('FRA', 'Alemania (Fráncfort)'),
+('GVA', 'Suiza (Ginebra)'),
+('HAM', 'Alemania (Hamburgo)'),
+('HEL', 'Finlandia (Helsinki)'),
 ('HOU', 'Houston'),
-('IST', 'TURQUÍA (Estambul)'),
+('IST', 'Turquía (Estambul)'),
 ('JFK', 'Nueva York (JFK)'),
 ('LAX', 'Los Ángeles'),
 ('LHR', 'Reino Unido (Heathrow)'),
-('LIM', 'PERÚ (Lima)'),
+('LIM', 'Perú (Lima)'),
 ('MAD', 'Madrid'),
-('MEX', 'MÉXICO (Ciudad de México)'),
-('MUC', 'ALEMANIA (Múnich)'),
-('NBO', 'KENIA (Nairobi)'),
-('ORY', 'FRANCIA (París, Orly)'),
-('OSL', 'NORUEGA (Oslo)'),
+('MEX', 'México (Ciudad de México)'),
+('MUC', 'Alemania (Múnich)'),
+('NBO', 'Kenia (Nairobi)'),
+('ORY', 'Francia (París, Orly)'),
+('OSL', 'Noruega (Oslo)'),
 ('PMI', 'Palma de Mallorca'),
-('PRG', 'REPUBLICA CHECA (Praga)'),
-('RAK', 'MARRUECOS (Marrakech)'),
+('PRG', 'República Checa (Praga)'),
+('RAK', 'Marruecos (Marrakech)'),
 ('SFO', 'San Francisco'),
-('SYD', 'AUSTRALIA (Sídney)'),
+('SYD', 'Australia (Sídney)'),
 ('TFN', 'Tenerife Norte'),
 ('TFS', 'Tenerife Sur'),
-('ZRH', 'SUIZA (Zúrich)');
+('ZRH', 'Suiza (Zúrich)');
 
--- ///////////// aerolinea ////////////////////////
-
+-- /////////////////// aerolinea ////////
 CREATE TABLE Aerolinea (
-	Cod_Aerolinea VARCHAR(5) NOT NULL PRIMARY KEY,
-	NomAerolinea VARCHAR(50) NOT NULL,
+    Cod_Aerolinea VARCHAR(5) PRIMARY KEY,
+    NomAerolinea VARCHAR(50) NOT NULL,
     Cod_Pais CHAR(2) NOT NULL,
     CONSTRAINT FK_Cod_Pais FOREIGN KEY (Cod_Pais) REFERENCES Pais(Cod_Pais)
 );
@@ -246,7 +216,7 @@ INSERT INTO Aerolinea (Cod_Aerolinea, NomAerolinea, Cod_Pais) VALUES
 ('2K', 'AVIANCA-Ecuador dba AVIANCA', 'EC'),
 ('3P', 'World 2 Fly PT, S.A.', 'PT'),
 ('6B', 'TUIfly Nordic AB', 'CN'),
-('AC', 'Air France', 'FR'),
+('AC', 'Air Canada', 'CA'),
 ('A0', 'BA Euroflyer Limited dba British Airways', 'GB'),
 ('AM', 'AeroMéxico', 'MX'),
 ('AV', 'Avianca', 'CO'),
@@ -256,97 +226,100 @@ INSERT INTO Aerolinea (Cod_Aerolinea, NomAerolinea, Cod_Pais) VALUES
 ('TK', 'Turkish Airlines', 'TR'),
 ('UA', 'United Airlines', 'US');
 
--- ///////////////// vuelo //////////////
-
+-- //////////////////// vuelo ///////////////
 CREATE TABLE Vuelo (
-	Id_Vuelo CHAR(5) PRIMARY KEY,
+    Id_Vuelo CHAR(5) PRIMARY KEY,
     FechVuelo DATE NOT NULL,
-    Aerolinea VARCHAR(50) NOT NULL,
+    Aerolinea VARCHAR(5) NOT NULL,
     HorarioSalida TIME NOT NULL,
     Duracion INT NOT NULL,
     Id_AeroOrig CHAR(3) NOT NULL,  
     Id_AeroDest CHAR(3) NOT NULL,
-	Precio INT NOT NULL,
-	CONSTRAINT FK_Id_AeroOrig FOREIGN KEY (Id_AeroOrig) REFERENCES Aeropuerto(Id_Aeropuerto),
-	CONSTRAINT FK_Id_AeroDest FOREIGN KEY (Id_AeroDest) REFERENCES Aeropuerto(Id_Aeropuerto)
+    Precio INT NOT NULL,
+    CONSTRAINT FK_Aerolinea FOREIGN KEY (Aerolinea) REFERENCES Aerolinea(Cod_Aerolinea),
+    CONSTRAINT FK_Id_AeroOrig FOREIGN KEY (Id_AeroOrig) REFERENCES Aeropuerto(Id_Aeropuerto),
+    CONSTRAINT FK_Id_AeroDest FOREIGN KEY (Id_AeroDest) REFERENCES Aeropuerto(Id_Aeropuerto)
 );
 
 INSERT INTO Vuelo (Id_Vuelo, FechVuelo, Aerolinea, HorarioSalida, Duracion, Id_AeroOrig, Id_AeroDest, Precio)
 VALUES
-('V001', '2025-03-01', 'AeroMéxico', '08:00:00', 180, 'ACA', 'MEX', 250),
-('V002', '2025-04-10', 'Avianca', '10:00:00', 240, 'BOG', 'LIM', 300),
-('V003', '2025-06-05', 'Lufthansa', '14:00:00', 360, 'FRA', 'MAD', 400);
+('V001', '2025-03-01', 'AM', '08:00:00', 180, 'MEX', 'JFK', 500),
+('V002', '2025-04-10', 'AV', '10:00:00', 240, 'BOG', 'LIM', 450),
+('V003', '2025-06-05', 'LH', '14:00:00', 360, 'FRA', 'MAD', 700);
 
--- ////////////////// planViaje //////////////////
-
-CREATE TABLE Plan_Viaje (
-	Id_Plan CHAR(5) PRIMARY KEY,
-    Trayecto ENUM("Ida","Ida_Vuelta") NOT NULL,
-    Id_VueloIda CHAR(5) NOT NULL,
-    Id_VueloVuelta CHAR(5),
-	CONSTRAINT FK_Id_Plan FOREIGN KEY (Id_Plan) REFERENCES Evento(Id_Evento),
-    CONSTRAINT FK_Id_VueloIda FOREIGN KEY (Id_VueloIda) REFERENCES Vuelo(Id_Vuelo),
-	CONSTRAINT FK_Id_VueloVuelta FOREIGN KEY (Id_VueloVuelta) REFERENCES Vuelo(Id_Vuelo)
+-- ////////////////////////// tipo habitacion //////////////
+CREATE TABLE TipoHabitacion (
+    Cod_TipoHab VARCHAR(3) PRIMARY KEY, 
+    TipoHab VARCHAR(30) NOT NULL
 );
 
-INSERT INTO Plan_Viaje (Id_Plan, Trayecto, Id_VueloIda, Id_VueloVuelta)
-VALUES
-('EV004', 'Ida', 'V001', NULL),
-('EV005', 'Ida_Vuelta', 'V002', 'V003');
-
- 
- -- /////////////// tipo alojamiento ///////////////
-
-CREATE TABLE TipoDormitorio (
-	Cod_TipoHab VARCHAR(3) PRIMARY KEY, 
-    TipoHab VARCHAR(30) NOT NULL
-    );
-
-INSERT INTO TipoDormitorio (Cod_TipoHab, TipoHab) VALUES 
+INSERT INTO TipoHabitacion (Cod_TipoHab, TipoHab) VALUES 
 ('DB', 'Doble'),
-('DUI', 'Doble, uso individual'),
+('DUI', 'Doble uso individual'),
 ('SIN', 'Individual'),
 ('TPL', 'Triple');
 
+-- ////////////////// Plan Viaje //////////////////
+CREATE TABLE Plan_Viaje (
+    Id_Evento CHAR(5) PRIMARY KEY,
+    Nom_Evento VARCHAR(50) NOT NULL,
+    TipoEvento VARCHAR(50) NOT NULL,
+    Trayecto ENUM("Ida","Ida_Vuelta") NOT NULL,
+    Id_VueloIda CHAR(5) NOT NULL,
+    Id_VueloVuelta CHAR(5),
+    Id_Viaje CHAR(5) NOT NULL,
+    CONSTRAINT FK_Plan_Viaje_VueloIda FOREIGN KEY (Id_VueloIda) REFERENCES Vuelo(Id_Vuelo),
+    CONSTRAINT FK_Plan_Viaje_VueloVuelta FOREIGN KEY (Id_VueloVuelta) REFERENCES Vuelo(Id_Vuelo),
+    CONSTRAINT FK_Id_Viaje_Plan_Viaje FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
+);
 
--- ////////////////// alojamiento //////////////
 
+INSERT INTO Plan_Viaje (Id_Evento, Nom_Evento, TipoEvento, Trayecto, Id_VueloIda, Id_VueloVuelta, Id_Viaje)
+VALUES
+('EV001', 'Vuelo a Nueva York', 'Vuelo', 'Ida', 'V001', NULL, 'VI001'),
+('EV002', 'Vuelo ida y vuelta a Lima', 'Vuelo', 'Ida_Vuelta', 'V002', 'V003', 'VI002'),
+('EV003', 'Vuelo a Madrid', 'Ida', 'Vuelo', 'V003', NULL, 'VI003');
+
+
+
+-- ////////////////// Actividad //////////////////
+CREATE TABLE Actividad (
+    Id_Evento CHAR(5) PRIMARY KEY,
+    Nom_Evento VARCHAR(30) NOT NULL,
+	TipoEvento VARCHAR(50) NOT NULL,
+    Descripcion TEXT NOT NULL, 
+    fecha DATE NOT NULL,
+    Precio INT NOT NULL,
+    Id_Viaje CHAR(5) NOT NULL,
+    CONSTRAINT FK_Id_Viaje_Actividad FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
+);
+
+INSERT INTO Actividad (Id_Evento, Nom_Evento, TipoEvento, Descripcion, fecha, Precio, Id_Viaje)
+VALUES
+('EV001', 'Tesoros de la ciudad', 'Actividad', 'Excursión en el Zócalo de la Ciudad de México', '2025-02-02', 50, 'VI001'),
+('EV002', 'Arte & Tradición', 'Actividad', 'Tour por el Parc Güell en Barcelona', '2025-02-06', 40, 'VI002'),
+('EV003', 'Sabores pacíficos', 'Actividad', 'Paseo por la playa de Copacabana', '2025-03-02', 60, 'VI003');
+
+
+-- ////////////////// Alojamiento //////////////////
 CREATE TABLE Alojamiento (
-	Id_Alojamiento CHAR(5) PRIMARY KEY,
+    Id_Evento CHAR(5) PRIMARY KEY,
+    Nom_Evento VARCHAR(30) NOT NULL,
+	TipoEvento VARCHAR(50) NOT NULL,
     nomHotel VARCHAR(30) NOT NULL,
-    Cod_TipoHab VARCHAR(3)  NOT NULL,
+    Cod_TipoHab VARCHAR(3) NOT NULL,
     Ciudad VARCHAR(30) NOT NULL,
     Precio INT NOT NULL,
     fechaEnt DATE NOT NULL,
     FechaSal DATE NOT NULL,
-    CONSTRAINT FK_Id_Alojamiento FOREIGN KEY (Id_Alojamiento) REFERENCES Evento(Id_Evento),
-    CONSTRAINT FK_Cod_TipoHab FOREIGN KEY (Cod_TipoHab) REFERENCES TipoDormitorio (Cod_TipoHab)
+    Id_Viaje CHAR(5) NOT NULL,
+    CONSTRAINT FK_Cod_TipoHab FOREIGN KEY (Cod_TipoHab) REFERENCES TipoHabitacion(Cod_TipoHab),
+    CONSTRAINT FK_Id_Viaje_alojamiento FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
 );
 
-INSERT INTO Alojamiento (Id_Alojamiento, nomHotel, Cod_TipoHab, Ciudad, Precio, fechaEnt, FechaSal)
+INSERT INTO Alojamiento (Id_Evento, Nom_Evento, TipoEvento, nomHotel, Cod_TipoHab, Ciudad, Precio, fechaEnt, FechaSal, Id_Viaje)
 VALUES
-('EV006', 'Hotel Sol', 'DB', 'Madrid', 120, '2025-03-01', '2025-03-05'),
-('EV007', 'Resort Caribe', 'TPL', 'Cancún', 200, '2025-04-10', '2025-04-15'),
-('EV008', 'Villa Toscana', 'SIN', 'Florencia', 150, '2025-06-05', '2025-06-10');
-
--- //////////////// actividad //////////////////////
-
-CREATE TABLE Actividad (
-	Id_Actividad CHAR(5) PRIMARY KEY, 
-    Descripcion TEXT NOT NULL, 
-    fecha DATE NOT NULL,
-    Precio INT NOT NULL,
-	CONSTRAINT FK_Id_Actividad FOREIGN KEY (Id_Actividad) REFERENCES Evento(Id_Evento)
-);
-
-INSERT INTO Actividad (Id_Actividad, Descripcion, fecha, Precio)
-VALUES
-('EV009', 'Senderismo en Costa Rica', '2025-03-02', 50),
-('EV010', 'Tour por el Coliseo Romano', '2025-04-12', 75);
-
-
-
-
-
-
+('EV001', 'Hogar de desierto', 'Alojamiento', 'Hotel Fiesta Americana', 'DB', 'Acapulco', 150, '2025-02-01', '2025-02-07', 'VI001'),
+('EV002', 'Metropolis stay', 'Alojamiento', 'Hotel Melia Barcelona', 'SIN', 'Barcelona', 120, '2025-02-05', '2025-02-10', 'VI002'),
+('EV003', 'Paraiso costero', 'Alojamiento', 'Copacabana Palace', 'TPL', 'Rio de Janeiro', 300, '2025-03-01', '2025-03-07', 'VI003');
 
