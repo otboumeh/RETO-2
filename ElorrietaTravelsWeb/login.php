@@ -78,9 +78,6 @@ if (isset($_POST['submit'])) {
         </form>
         <span class="errorPanel" style="color: red"><?= $errorWrongData; ?></span>
 
-
-        <p class="signupText">¿Nuevo a Elorrieta-Travels? <a href="signUp.php">Crear Cuenta</a></p>
-
     </div>
 
 </body>

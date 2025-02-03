@@ -1,0 +1,56 @@
+html{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background-image: url(./assets/images/bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.firstContainer{
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, .1), rgba(255, 255, 255, .3), rgba(255, 255, 255, .1));
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 50px;
+    padding-top: 100px;
+    align-items: center;
+}
+
+input[type="text"], input[type="date"], input[type="number"], select, textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-left: 5%;
+}
+label{
+    margin-left: 30%;
+}
+
+textarea {
+    resize: vertical;
+}
+button{
+    margin-left: 30%;
+}
