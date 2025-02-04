@@ -1,4 +1,3 @@
--- Drop existing tables to reset the database
 DROP DATABASE IF EXISTS Reto2_t;
 CREATE DATABASE Reto2_t COLLATE utf8mb4_spanish_ci;
 USE Reto2_t;
@@ -34,8 +33,8 @@ CREATE TABLE Agencia(
     Cod_DescEmp CHAR(2) NOT NULL,
     Logo TEXT NOT NULL,
     Pass VARCHAR(40) NOT NULL,
-    CONSTRAINT FK_Cod_DescEmp FOREIGN KEY (Cod_DescEmp) REFERENCES DescEmpleados(Cod_DescEmp),
-    CONSTRAINT FK_Cod_Tipo FOREIGN KEY (Cod_Tipo) REFERENCES TipoAgencia(Cod_Tipo)
+    CONSTRAINT FK_Cod_DescEmp FOREIGN KEY (Cod_DescEmp) REFERENCES DescEmpleados(Cod_DescEmp)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Cod_Tipo FOREIGN KEY (Cod_Tipo) REFERENCES TipoAgencia(Cod_Tipo)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Agencia (Id_Agencia, NomAgencia, Cod_Tipo, ColorAgencia, Cod_DescEmp, Logo, Pass)
@@ -69,8 +68,8 @@ CREATE TABLE Viaje(
     Descripcion TEXT NOT NULL,
     ServiciosnoIncl TEXT NOT NULL,
     Id_Agencia VARCHAR(5) NOT NULL,
-    CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia),
-    CONSTRAINT FK_Cod_TipoViaje FOREIGN KEY(Cod_TipoViaje) REFERENCES TipoViaje(Cod_TipoViaje)
+    CONSTRAINT FK_Id_Agencia FOREIGN KEY(Id_Agencia) REFERENCES Agencia(Id_Agencia)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Cod_TipoViaje FOREIGN KEY(Cod_TipoViaje) REFERENCES TipoViaje(Cod_TipoViaje)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Viaje (Id_Viaje, NomViaje, Cod_TipoViaje, FechInicio, FechFin, NumDias, PaisDestino, Descripcion, ServiciosnoIncl, Id_Agencia)
@@ -209,7 +208,7 @@ CREATE TABLE Aerolinea (
     Cod_Aerolinea VARCHAR(5) PRIMARY KEY,
     NomAerolinea VARCHAR(50) NOT NULL,
     Cod_Pais CHAR(2) NOT NULL,
-    CONSTRAINT FK_Cod_Pais FOREIGN KEY (Cod_Pais) REFERENCES Pais(Cod_Pais)
+    CONSTRAINT FK_Cod_Pais FOREIGN KEY (Cod_Pais) REFERENCES Pais(Cod_Pais)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Aerolinea (Cod_Aerolinea, NomAerolinea, Cod_Pais) VALUES 
@@ -236,9 +235,9 @@ CREATE TABLE Vuelo (
     Id_AeroOrig CHAR(3) NOT NULL,  
     Id_AeroDest CHAR(3) NOT NULL,
     Precio INT NOT NULL,
-    CONSTRAINT FK_Aerolinea FOREIGN KEY (Aerolinea) REFERENCES Aerolinea(Cod_Aerolinea),
-    CONSTRAINT FK_Id_AeroOrig FOREIGN KEY (Id_AeroOrig) REFERENCES Aeropuerto(Id_Aeropuerto),
-    CONSTRAINT FK_Id_AeroDest FOREIGN KEY (Id_AeroDest) REFERENCES Aeropuerto(Id_Aeropuerto)
+    CONSTRAINT FK_Aerolinea FOREIGN KEY (Aerolinea) REFERENCES Aerolinea(Cod_Aerolinea)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Id_AeroOrig FOREIGN KEY (Id_AeroOrig) REFERENCES Aeropuerto(Id_Aeropuerto)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Id_AeroDest FOREIGN KEY (Id_AeroDest) REFERENCES Aeropuerto(Id_Aeropuerto)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Vuelo (Id_Vuelo, FechVuelo, Aerolinea, HorarioSalida, Duracion, Id_AeroOrig, Id_AeroDest, Precio)
@@ -268,9 +267,9 @@ CREATE TABLE Plan_Viaje (
     Id_VueloIda CHAR(5) NOT NULL,
     Id_VueloVuelta CHAR(5),
     Id_Viaje CHAR(5) NOT NULL,
-    CONSTRAINT FK_Plan_Viaje_VueloIda FOREIGN KEY (Id_VueloIda) REFERENCES Vuelo(Id_Vuelo),
-    CONSTRAINT FK_Plan_Viaje_VueloVuelta FOREIGN KEY (Id_VueloVuelta) REFERENCES Vuelo(Id_Vuelo),
-    CONSTRAINT FK_Id_Viaje_Plan_Viaje FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
+    CONSTRAINT FK_Plan_Viaje_VueloIda FOREIGN KEY (Id_VueloIda) REFERENCES Vuelo(Id_Vuelo)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Plan_Viaje_VueloVuelta FOREIGN KEY (Id_VueloVuelta) REFERENCES Vuelo(Id_Vuelo)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Id_Viaje_Plan_Viaje FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -291,7 +290,7 @@ CREATE TABLE Actividad (
     fecha DATE NOT NULL,
     Precio INT NOT NULL,
     Id_Viaje CHAR(5) NOT NULL,
-    CONSTRAINT FK_Id_Viaje_Actividad FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
+    CONSTRAINT FK_Id_Viaje_Actividad FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Actividad (Id_Evento, Nom_Evento, TipoEvento, Descripcion, fecha, Precio, Id_Viaje)
@@ -313,8 +312,8 @@ CREATE TABLE Alojamiento (
     fechaEnt DATE NOT NULL,
     FechaSal DATE NOT NULL,
     Id_Viaje CHAR(5) NOT NULL,
-    CONSTRAINT FK_Cod_TipoHab FOREIGN KEY (Cod_TipoHab) REFERENCES TipoHabitacion(Cod_TipoHab),
-    CONSTRAINT FK_Id_Viaje_alojamiento FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)
+    CONSTRAINT FK_Cod_TipoHab FOREIGN KEY (Cod_TipoHab) REFERENCES TipoHabitacion(Cod_TipoHab)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_Id_Viaje_alojamiento FOREIGN KEY (Id_Viaje) REFERENCES Viaje(Id_Viaje)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Alojamiento (Id_Evento, Nom_Evento, TipoEvento, nomHotel, Cod_TipoHab, Ciudad, Precio, fechaEnt, FechaSal, Id_Viaje)
@@ -322,4 +321,3 @@ VALUES
 ('EV001', 'Hogar de desierto', 'Alojamiento', 'Hotel Fiesta Americana', 'DB', 'Acapulco', 150, '2025-02-01', '2025-02-07', 'VI001'),
 ('EV002', 'Metropolis stay', 'Alojamiento', 'Hotel Melia Barcelona', 'SIN', 'Barcelona', 120, '2025-02-05', '2025-02-10', 'VI002'),
 ('EV003', 'Paraiso costero', 'Alojamiento', 'Copacabana Palace', 'TPL', 'Rio de Janeiro', 300, '2025-03-01', '2025-03-07', 'VI003');
-
