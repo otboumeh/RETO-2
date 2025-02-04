@@ -39,13 +39,13 @@ if (isset($_SESSION['username'])) {
 </div>
 
 <label for="fecha_inicio">Fecha de inicio:</label>
-<input type="date" id="fecha_inicio" name="fecha_inicio">
+<input type="date" id="fecha_inicio" name="fecha_inicio" >
 
 <label for="fecha_fin">Fecha de finalización:</label>
-<input type="date" id="fecha_fin" name="fecha_fin">
+<input type="date" id="fecha_fin" name="fecha_fin" >
 
 <label for="dias">Días:</label>
-<input type="number" id="dias" name="dias">
+<input type="number" id="dias" name="dias" readonly>
 
 <label for="pais">País:</label>
 <select id="pais" name="pais">
@@ -62,8 +62,6 @@ if (isset($_SESSION['username'])) {
 
 <button type="submit">GUARDAR</button>
 
+<script src="viaje.js" ></script>
 </body>
-<script src="viaje.js" defer></script>
-
 </html>
-
