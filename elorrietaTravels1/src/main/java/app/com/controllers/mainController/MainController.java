@@ -1,13 +1,12 @@
 package main.java.app.com.controllers.mainController;
 
-import main.java.app.com.ui.panels.ActivityPanel;
-import main.java.app.com.ui.panels.FlightPanel;
 import main.java.app.com.ui.panels.LoginPanel;
-import main.java.app.com.ui.panels.NewEvent;
+import main.java.app.com.ui.panels.NewEventPanel;
 import main.java.app.com.ui.panels.NewProfilePanel;
-import main.java.app.com.ui.panels.NuevoViajePanel;
+import main.java.app.com.ui.panels.NewTripPanel;
 import main.java.app.com.ui.panels.TripsAndEventsPanel;
 import main.java.app.com.ui.panels.WelcomePanel;
+import main.java.app.com.ui.panels.newEventsSubpanels.ActivityPanel;
 
 public class MainController {
 
@@ -16,18 +15,21 @@ public class MainController {
 	private WelcomePanel welcomePanel;
 	private LoginPanel loginPanel;
 	private NewProfilePanel newProfilePanel;
-	private NuevoViajePanel nuevoViajePanel;
-	private ActivityPanel eventPanel;
+	private NewTripPanel nuevoViajePanel;
+	private ActivityPanel activityPanel;
 	private TripsAndEventsPanel tripsAndEventsPanel;
-	private NewEvent newEvent;
+	private NewEventPanel newEventPanel;
+	private NewTripPanel newTripPanel;
+
 	private MainController() {
 		welcomePanel = new WelcomePanel();
 		loginPanel = new LoginPanel();
 		newProfilePanel = new NewProfilePanel();
-		nuevoViajePanel = new NuevoViajePanel();
-		eventPanel = new ActivityPanel();
-		tripsAndEventsPanel = new TripsAndEventsPanel();
-		newEvent = new NewEvent();
+		nuevoViajePanel = new NewTripPanel();
+		activityPanel = new ActivityPanel();
+		tripsAndEventsPanel = new TripsAndEventsPanel(); 
+		newEventPanel = new NewEventPanel();
+		newTripPanel = new NewTripPanel();
 	}
 
 	public static MainController getInstance() {
@@ -48,20 +50,26 @@ public class MainController {
 		return newProfilePanel;
 	}
 
-	public NuevoViajePanel getNuevoViajePanel() {
+	public NewTripPanel getNuevoViajePanel() {
 		return nuevoViajePanel;
 	}
 
 	public ActivityPanel getEventPanel() {
-		return eventPanel;
+		return activityPanel;
 	}
 
 	public TripsAndEventsPanel getTripsAndEventsPanel() {
 		return tripsAndEventsPanel;
 	}
-	public NewEvent getNewEvent() {
-		return newEvent;
+	
+	public NewEventPanel getNewEventPanel() {
+		return newEventPanel;
 	}
+	
+	public NewTripPanel getNewTripPanel() {
+		return newTripPanel;
+	}
+	
 	
 //////////////// metodos generales ////////////
 	
@@ -70,8 +78,16 @@ public class MainController {
 		loginPanel.setVisible(false);
 		newProfilePanel.setVisible(false);
 		nuevoViajePanel.setVisible(false);
-		eventPanel.setVisible(false);
+		activityPanel.setVisible(false);
 		tripsAndEventsPanel.setVisible(false);
-		newEvent.setVisible(false);
+		
+		newEventPanel.setVisible(false);
+		newEventPanel.getFlightPanel().setVisible(false);
+		newEventPanel.getHotelPanel().setVisible(false);
+		newEventPanel.getReturnFlightPanel().setVisible(false);
+		newEventPanel.getActivityPanel().setVisible(false);
+		
+		newTripPanel.setVisible(false);
+
 	}
 }

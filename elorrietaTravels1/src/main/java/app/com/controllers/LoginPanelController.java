@@ -22,6 +22,8 @@ public class LoginPanelController {
 	private void toNewProfilePageButton() {
 		MainController.getInstance().hideAllPanels();
 		MainController.getInstance().getNewProfilePanel().setVisible(true);
+        MainController.getInstance().getLoginPanel().getUsernameInput().setText("");
+		MainController.getInstance().getLoginPanel().getPasswordInput().setText("");
 	}
 	
 	private void loginButton() {
@@ -35,14 +37,17 @@ public class LoginPanelController {
 		
 		boolean loggedIn = false;
 		
-		for(Agencia agencia : agencias) {
+		for (Agencia agencia : agencias) {
 			if(agencia.getNomAgencia().equalsIgnoreCase(inputUser.trim()) && agencia.getPass().equals(inputPass)) {
 				MainController.getInstance().hideAllPanels();
 				MainController.getInstance().getTripsAndEventsPanel().setVisible(true);
 				
-				MainController.getInstance().getTripsAndEventsPanel().setUser(inputUser);
-
+				MainController.getInstance().getTripsAndEventsPanel().setUser(agencia.getNomAgencia());
+				MainController.getInstance().getTripsAndEventsPanel().setUserId(agencia.getIdAgencia());
+				
 				loggedIn = true;
+		        MainController.getInstance().getLoginPanel().getUsernameInput().setText("");
+				MainController.getInstance().getLoginPanel().getPasswordInput().setText("");
 				break;
 			}
 		}

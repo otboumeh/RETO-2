@@ -21,55 +21,44 @@ public class AgenciaDAO {
 	public ArrayList<Agencia> getAllAgencies() {
 		ArrayList<Agencia> ret = null;
 
-		// SQL que queremos lanzar
 		String sql = "select * from agencia";
 
-		// La conexion con BBDD
 		Connection connection = null;
 
-		// Vamos a lanzar una sentencia SQL contra la BBDD
-		// Result set va a contener todo lo que devuelve la BBDD
 		Statement statement = null;
 		ResultSet resultSet = null;
 
 		try {
-			// El Driver que vamos a usar
 			Class.forName(DBConnection.DRIVER);
 
-			// Abrimos la conexion con BBDD
 			connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASS);
 
-			// Vamos a lanzar la sentencia...
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sql);
 
-			// Recorremos resultSet, que tiene las filas de la tabla
 			while (resultSet.next()) {
 
-				// Hay al menos una fila en el cursos, inicializamos el ArrayList
 				if (null == ret)
 					ret = new ArrayList<Agencia>();
 
-				// El Alumno
 				Agencia agencia = new Agencia();
 
-				// Sacamos las columnas del resultSet				
 				String idAgencia = resultSet.getString("Id_Agencia");
 				String nomAgencia = resultSet.getString("NomAgencia");
-				String tipoAgencia = resultSet.getString("TipoAgencia");
+				String tipoAgencia = resultSet.getString("Cod_Tipo");
 				String colorAgencia = resultSet.getString("ColorAgencia");
+				String NumEmp = resultSet.getString("Cod_descEmp");
 				String logo = resultSet.getString("Logo");
 				String pass = resultSet.getString("Pass");
 
-				// Metemos los datos en Alumno
 				agencia.setIdAgencia(idAgencia);
 				agencia.setNomAgencia(nomAgencia);
 				agencia.setTipoAgencia(tipoAgencia);
 				agencia.setColorAgencia(colorAgencia);
+				agencia.setNumEmp(NumEmp);
 				agencia.setLogo(logo);
 				agencia.setPass(pass);
-				
-				// Lo guardamos en la lista
+
 				ret.add(agencia);
 			}
 		} catch (SQLException sqle) {
@@ -77,26 +66,70 @@ public class AgenciaDAO {
 		} catch (Exception e) {
 			System.out.println("Error generico - " + e.getMessage());
 		} finally {
-			// Cerramos al reves de como las abrimos
 			try {
 				if (resultSet != null)
 					resultSet.close();
 			} catch (Exception e) {
-				// No hace falta
 			}
 			try {
 				if (statement != null)
 					statement.close();
 			} catch (Exception e) {
-				// No hace falta
 			}
 			try {
 				if (connection != null)
 					connection.close();
 			} catch (Exception e) {
-				// No hace falta
 			}
 		}
 		return ret;
 	}
+
+	/**
+	 * Inserta un alumno en la tabla t_alumno
+	 * 
+	 * @param alumno El alumno a insertar
+	 */
+	public void addAgencyToDB(Agencia agencia) {
+
+		Connection connection = null;
+
+		Statement statement = null;
+
+		try {
+			Class.forName(DBConnection.DRIVER);
+
+			connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASS);
+
+			statement = connection.createStatement();
+			
+			String codTipoAgencia = agencia.getTipoAgencia().equalsIgnoreCase("Mayorista") ? "A1" : agencia.getTipoAgencia().equalsIgnoreCase("Minorista") ? "A2": agencia.getTipoAgencia().equalsIgnoreCase("Mayorista-minorista") ? "A3" : null; 
+			String codDescEmp = agencia.getNumEmp().equalsIgnoreCase("Entre 2 a 10") ? "L1" :  agencia.getNumEmp().equalsIgnoreCase("Entre 10 a 100") ? "L2":  agencia.getNumEmp().equalsIgnoreCase("Entre 100 a 1000") ? "L3" : null; 
+
+			
+			String sql = "insert into Agencia (Id_Agencia, NomAgencia, Cod_tipo, ColorAgencia, Cod_descEmp, Logo, Pass) VALUES ('" + agencia.getIdAgencia() + "', '"
+					+ agencia.getNomAgencia() + "', '" + codTipoAgencia + "', '" + agencia.getColorAgencia() + "', '" + codDescEmp + "', '" + agencia.getLogo() + "', '" + agencia.getPass() + "')";
+
+			statement.executeUpdate(sql);
+
+		} catch (SQLException sqle) {
+			System.out.println("Error con la BBDD - " + sqle.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error generico - " + e.getMessage());
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
+
+	
 }

@@ -23,12 +23,14 @@ public class NewProfilePanel extends JPanel{
 	private JLabel backgroundLabel = new JLabel(backgroundImage);
 	private JLabel panelTitle = new JLabel("Perfil Nuevo");
 	private JLabel agencyNameLabel = new JLabel("Nombre Agencia");
+	private JLabel agencyPasswordLabel = new JLabel("Contraseña");
 	private JLabel agencyColorLabel = new JLabel("Color de marca");
 	private JLabel numEmployeesLabel = new JLabel("Número de Empleados");
 	private JLabel agencyTypeLabel = new JLabel("Tipo de Agencia");
 	private JLabel logoLabel = new JLabel("Logo");
 	
 	private JTextField agencyNameInput = new JTextField();
+	private JTextField agencyPasswordInput = new JTextField();
 	private JTextField agencyColorInput = new JTextField();
 	private CustomComboBox numEmployeesInput = new CustomComboBox(numEmployees);
 	private CustomComboBox agencyTypesInput = new CustomComboBox(agencyTypes);
@@ -57,30 +59,35 @@ public class NewProfilePanel extends JPanel{
     	agencyNameLabel.setForeground(Color.BLACK);
     	agencyNameLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	agencyColorLabel.setBounds(350, 300, 250, 40);
+    	agencyPasswordLabel.setBounds(350, 300, 250, 40);
+    	agencyPasswordLabel.setForeground(Color.BLACK);
+    	agencyPasswordLabel.setFont(new Font("Arial", Font.BOLD, 20));
+    	
+    	agencyColorLabel.setBounds(350, 350, 250, 40);
     	agencyColorLabel.setForeground(Color.BLACK);
     	agencyColorLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	numEmployeesLabel.setBounds(350, 350, 250, 40);
+    	numEmployeesLabel.setBounds(350, 400, 250, 40);
     	numEmployeesLabel.setForeground(Color.BLACK);
     	numEmployeesLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	agencyTypeLabel.setBounds(350, 400, 250, 40);
+    	agencyTypeLabel.setBounds(350, 450, 250, 40);
     	agencyTypeLabel.setForeground(Color.BLACK);
     	agencyTypeLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	logoLabel.setBounds(350, 450, 250, 40);
+    	logoLabel.setBounds(350, 500, 250, 40);
     	logoLabel.setForeground(Color.BLACK);
     	logoLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
     	agencyNameInput.setBounds(600, 250, 250, 40);
-    	agencyColorInput.setBounds(600, 300, 250, 40);
-    	numEmployeesInput.setBounds(600, 350, 250, 40);
-    	agencyTypesInput.setBounds(600, 400, 250, 40);
-    	logoInput.setBounds(600, 450, 400, 40);
+    	agencyPasswordInput.setBounds(600, 300, 250, 40);
+    	agencyColorInput.setBounds(600, 350, 250, 40);
+    	numEmployeesInput.setBounds(600, 400, 250, 40);
+    	agencyTypesInput.setBounds(600, 450, 250, 40);
+    	logoInput.setBounds(600, 500, 500, 40);
     	
-        saveButton.setBounds(600, 550, saveButton.getWidth(), saveButton.getHeight());
-        cancelButton.setBounds(430, 550, cancelButton.getWidth(), cancelButton.getHeight());
+        saveButton.setBounds(600, 600, saveButton.getWidth(), saveButton.getHeight());
+        cancelButton.setBounds(430, 600, cancelButton.getWidth(), cancelButton.getHeight());
     	
         
         layeredPane.setBounds(0, 0, 1200, 800);
@@ -88,12 +95,14 @@ public class NewProfilePanel extends JPanel{
         layeredPane.add(backgroundLabel, Integer.valueOf(0));
         layeredPane.add(panelTitle, Integer.valueOf(1)); 
         layeredPane.add(agencyNameLabel, Integer.valueOf(1));
+        layeredPane.add(agencyPasswordLabel, Integer.valueOf(1));
         layeredPane.add(agencyColorLabel, Integer.valueOf(1));
         layeredPane.add(numEmployeesLabel, Integer.valueOf(1));
         layeredPane.add(agencyTypeLabel, Integer.valueOf(1));
         layeredPane.add(logoLabel, Integer.valueOf(1));
         
         layeredPane.add(agencyNameInput, Integer.valueOf(1));
+        layeredPane.add(agencyPasswordInput, Integer.valueOf(1));
         layeredPane.add(agencyColorInput, Integer.valueOf(1));
         layeredPane.add(numEmployeesInput, Integer.valueOf(1));
         layeredPane.add(agencyTypesInput, Integer.valueOf(1));
@@ -102,7 +111,6 @@ public class NewProfilePanel extends JPanel{
         layeredPane.add(saveButton, Integer.valueOf(1));
         layeredPane.add(cancelButton, Integer.valueOf(1));
 
-
     	add(layeredPane);
         setVisible(true);
 	}
@@ -110,6 +118,9 @@ public class NewProfilePanel extends JPanel{
 
 	public JTextField getAgencyNameInput() {
 		return agencyNameInput;
+	}
+	public JTextField getAgencyPasswordInput() {
+		return agencyPasswordInput;
 	}
 
 	public JTextField getAgencyColorInput() {

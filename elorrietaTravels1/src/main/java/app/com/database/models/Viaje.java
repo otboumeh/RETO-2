@@ -11,8 +11,8 @@ public class Viaje {
 	private String tipoViaje = null;
 	private Date fechInicio = null;
 	private Date fechFin = null;
-	private int numDias = 0;
-	private String paisDestino = null;
+	private long numDias = 0;
+	private String pais = null;
 	private String descripcion = null;
 	private String serviciosnoIncl = null;
 	private String idAgencia = null;
@@ -50,17 +50,17 @@ public class Viaje {
 	public void setFechFin(Date fechFin) {
 		this.fechFin = fechFin;
 	}
-	public int getNumDias() {
+	public long getNumDias() {
 		return numDias;
 	}
-	public void setNumDias(int numDias) {
+	public void setNumDias(long numDias) {
 		this.numDias = numDias;
 	}
-	public String getPaisDestino() {
-		return paisDestino;
+	public String getPais() {
+		return pais;
 	}
-	public void setPaisDestino(String paisDestino) {
-		this.paisDestino = paisDestino;
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -101,7 +101,7 @@ public class Viaje {
 	@Override
 	public int hashCode() {
 		return Objects.hash(actividades, alojamientos, descripcion, fechFin, fechInicio, idAgencia, idViaje, nomViaje,
-				numDias, paisDestino, planViajes, serviciosnoIncl, tipoViaje);
+				numDias, pais, planViajes, serviciosnoIncl, tipoViaje);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -116,21 +116,16 @@ public class Viaje {
 				&& Objects.equals(descripcion, other.descripcion) && Objects.equals(fechFin, other.fechFin)
 				&& Objects.equals(fechInicio, other.fechInicio) && Objects.equals(idAgencia, other.idAgencia)
 				&& Objects.equals(idViaje, other.idViaje) && Objects.equals(nomViaje, other.nomViaje)
-				&& numDias == other.numDias && Objects.equals(paisDestino, other.paisDestino)
+				&& numDias == other.numDias && Objects.equals(pais, other.pais)
 				&& Objects.equals(planViajes, other.planViajes)
 				&& Objects.equals(serviciosnoIncl, other.serviciosnoIncl) && Objects.equals(tipoViaje, other.tipoViaje);
 	}
 	@Override
 	public String toString() {
 		return "Viaje [idViaje=" + idViaje + ", nomViaje=" + nomViaje + ", tipoViaje=" + tipoViaje + ", fechInicio="
-				+ fechInicio + ", fechFin=" + fechFin + ", numDias=" + numDias + ", paisDestino=" + paisDestino
-				+ ", descripcion=" + descripcion + ", serviciosnoIncl=" + serviciosnoIncl + ", idAgencia=" + idAgencia
-				+ ", planViajes=" + planViajes + ", alojamientos=" + alojamientos + ", actividades=" + actividades
-				+ "]";
+				+ fechInicio + ", fechFin=" + fechFin + ", numDias=" + numDias + ", pais=" + pais + ", descripcion="
+				+ descripcion + ", serviciosnoIncl=" + serviciosnoIncl + ", idAgencia=" + idAgencia + ", planViajes="
+				+ planViajes + ", alojamientos=" + alojamientos + ", actividades=" + actividades + "]";
 	}
-	
-	
-
-	
 	
 }

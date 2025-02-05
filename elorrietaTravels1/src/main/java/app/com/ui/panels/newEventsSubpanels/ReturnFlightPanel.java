@@ -1,9 +1,8 @@
-package main.java.app.com.ui.panels;
+package main.java.app.com.ui.panels.newEventsSubpanels;
 
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -16,8 +15,6 @@ public class ReturnFlightPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ImageIcon backgroundImage = new ImageIcon("src/main/resources/images/loginBackground.jpg");
-	private JLabel backgroundLabel = new JLabel(backgroundImage);
 	private JLabel returnDateLabel = new JLabel("Fecha de vuelta");
 	private JLabel flightIdLabel = new JLabel("Código de vuelo");
 	private JLabel returnAirlineLabel = new JLabel("Aerolinea de vuelta");
@@ -35,48 +32,49 @@ public class ReturnFlightPanel extends JPanel{
 
 	
 public ReturnFlightPanel() {
-        
         setLayout(null);
-        setBounds(0, 0, 1200, 800);
+        setBounds(0, 0, 550, 400);  
+        setOpaque(false);
+
+        int centerX = 20;
+        int startY = 10;
+        int labelWidth = 200;
+        int labelHeight = 40;
+        int verticalSpacing = 10;
         
-        
-    	backgroundLabel.setBounds(0, 0, 1200, 800);
-    	
-    	
-    	returnDateLabel.setBounds(600, 300, 250, 40);
+    	returnDateLabel.setBounds(centerX, startY, labelWidth, labelHeight);
     	returnDateLabel.setForeground(Color.BLACK);
     	returnDateLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	flightIdLabel.setBounds(600, 350, 250, 40);
+    	flightIdLabel.setBounds(centerX, startY + 1 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
     	flightIdLabel.setForeground(Color.BLACK);
     	flightIdLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	returnAirlineLabel.setBounds(600, 400, 250, 40);
+    	returnAirlineLabel.setBounds(centerX, startY + 2 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
     	returnAirlineLabel.setForeground(Color.BLACK);
     	returnAirlineLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	totalPriceLabel.setBounds(600, 450, 250, 40);
+    	totalPriceLabel.setBounds(centerX, startY + 3 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
     	totalPriceLabel.setForeground(Color.BLACK);
     	totalPriceLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	returnTimeLabel.setBounds(600, 500, 250, 40);
+    	returnTimeLabel.setBounds(centerX, startY + 4 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
     	returnTimeLabel.setForeground(Color.BLACK);
     	returnTimeLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
-    	returnDurationLabel.setBounds(600, 550, 250, 40);
+    	returnDurationLabel.setBounds(centerX, startY + 5 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
     	returnDurationLabel.setForeground(Color.BLACK);
     	returnDurationLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	
     
-    	dateChooserReturn.setBounds(858, 300, 200, 40);
-    	flightIdInput.setBounds(858, 350, 200, 40);
-    	returnAirlineInput.setBounds(858, 400, 200, 40);
-    	totalPriceInput.setBounds(858, 450, 200, 40);
-    	returnTimeInput.setBounds(858, 500, 200, 40);
-    	returnDurationInput.setBounds(858, 550, 200, 40);
+    	dateChooserReturn.setBounds(centerX + labelWidth + 10, startY, 300, labelHeight);
+    	flightIdInput.setBounds(centerX + labelWidth + 10, startY + 1 * (labelHeight + verticalSpacing), 300, labelHeight);
+    	returnAirlineInput.setBounds(centerX + labelWidth + 10, startY + 2 * (labelHeight + verticalSpacing), 300, labelHeight);
+    	totalPriceInput.setBounds(centerX + labelWidth + 10, startY + 3 * (labelHeight + verticalSpacing), 300, labelHeight);
+    	returnTimeInput.setBounds(centerX + labelWidth + 10, startY + 4 * (labelHeight + verticalSpacing), 300, labelHeight);
+    	returnDurationInput.setBounds(centerX + labelWidth + 10, startY + 5 * (labelHeight + verticalSpacing), 300, labelHeight);
     	
-        layeredPane.setBounds(0, 0, 1200, 800);        
-        layeredPane.add(backgroundLabel, Integer.valueOf(0));
+        layeredPane.setBounds(0, 0, 550, 400);        
         layeredPane.add(returnDateLabel, Integer.valueOf(1));
         layeredPane.add(flightIdLabel, Integer.valueOf(1));
         layeredPane.add(returnAirlineLabel, Integer.valueOf(1));

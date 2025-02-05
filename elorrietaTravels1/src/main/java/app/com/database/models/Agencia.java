@@ -9,10 +9,11 @@ public class Agencia {
 	private String nomAgencia = null;
 	private String tipoAgencia = null;
 	private String colorAgencia = null;
-	private int NumEmp = 0;
+	private String NumEmp = null;
 	private String logo = null;
 	private String pass = null;
 	private ArrayList<Viaje> viajes = new ArrayList<Viaje>();
+	
 	
 	public String getIdAgencia() {
 		return idAgencia;
@@ -38,10 +39,10 @@ public class Agencia {
 	public void setColorAgencia(String colorAgencia) {
 		this.colorAgencia = colorAgencia;
 	}
-	public int getNumEmp() {
+	public String getNumEmp() {
 		return NumEmp;
 	}
-	public void setNumEmp(int numEmp) {
+	public void setNumEmp(String numEmp) {
 		NumEmp = numEmp;
 	}
 	public String getLogo() {
@@ -75,7 +76,7 @@ public class Agencia {
 		if (getClass() != obj.getClass())
 			return false;
 		Agencia other = (Agencia) obj;
-		return NumEmp == other.NumEmp && Objects.equals(colorAgencia, other.colorAgencia)
+		return Objects.equals(NumEmp, other.NumEmp) && Objects.equals(colorAgencia, other.colorAgencia)
 				&& Objects.equals(idAgencia, other.idAgencia) && Objects.equals(logo, other.logo)
 				&& Objects.equals(nomAgencia, other.nomAgencia) && Objects.equals(pass, other.pass)
 				&& Objects.equals(tipoAgencia, other.tipoAgencia) && Objects.equals(viajes, other.viajes);
@@ -86,6 +87,6 @@ public class Agencia {
 				+ ", colorAgencia=" + colorAgencia + ", NumEmp=" + NumEmp + ", logo=" + logo + ", pass=" + pass
 				+ ", viajes=" + viajes + "]";
 	}
-	
-	
+
+
 }

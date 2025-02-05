@@ -1,9 +1,7 @@
-package main.java.app.com.ui.panels;
-
+package main.java.app.com.ui.panels.newEventsSubpanels;
 
 import java.awt.Color;
 import java.awt.Font;
-
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -14,17 +12,13 @@ import com.toedter.calendar.JDateChooser;
 
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
-
 import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+
 
 public class ActivityPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private ImageIcon backgroundImage = new ImageIcon("src/main/resources/images/loginBackground.jpg");
-	private JLabel backgroundLabel = new JLabel(backgroundImage);
     private JLabel descriptionLabel = new JLabel("Descripción:");
     private JLabel dateLabel = new JLabel("Fecha:");
     private JLabel priceLabel = new JLabel("Precio (€):");
@@ -35,48 +29,43 @@ public class ActivityPanel extends JPanel {
     private JTextField priceInput = new JTextField();
 
     private CustomUsualButton saveButton = new CustomUsualButton("Guardar");
-    private CustomUsualButton cancelButton = new CustomUsualButton("Cancelar");
 
     private JLayeredPane layeredPane = new JLayeredPane();
 
     public ActivityPanel() {
         setLayout(null);
-        setBounds(0, 0, 1200, 800);
+        setBounds(0, 0, 550, 550);
+        setOpaque(false);
         
-          //Background 
-        backgroundLabel.setBounds(0, 0, 1200, 800);
-        
-        // Configuración de etiquetas y campos
-       
-        descriptionLabel.setBounds(20, 200, 400, 30);
-        descriptionLabel.setFont(new Font("Arial", Font.BOLD, 20));
-    	descriptionLabel.setForeground(Color.BLACK);
+		int centerX = 20;
+		int startY = 10;
+		int labelWidth = 200;
+		int labelHeight = 40;
+		int verticalSpacing = 10;
 
-        descriptionInput.setBounds(231, 200, 250, 100);
-        descriptionInput.setLineWrap(true);
-        descriptionInput.setWrapStyleWord(true);
-
-        dateLabel.setBounds(20, 340, 150, 40);
+        dateLabel.setBounds(centerX, startY, labelWidth, labelHeight);
         dateLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	dateLabel.setForeground(Color.BLACK);
 
-        dateInput.setBounds(231, 340, 250, 40);
-
-        priceLabel.setBounds(20, 450, 150, 40);
+        priceLabel.setBounds(centerX, startY + 1 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
         priceLabel.setFont(new Font("Arial", Font.BOLD, 20));
     	priceLabel.setForeground(Color.BLACK);
 
-        priceInput.setBounds(231, 450, 250, 40);
+        descriptionLabel.setBounds(centerX, startY + 2 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
+        descriptionLabel.setFont(new Font("Arial", Font.BOLD, 20));
+    	descriptionLabel.setForeground(Color.BLACK);
 
-        saveButton.setBounds(150, 550, 200, saveButton.getHeight());
-        cancelButton.setBounds(400, 550, 200, cancelButton.getHeight());;
+        dateInput.setBounds(centerX + labelWidth + 10, startY, 300, labelHeight);
+    	priceInput.setBounds(centerX + labelWidth + 10, startY + 1 * (labelHeight + verticalSpacing), 300, labelHeight);
+    	
+        descriptionInput.setBounds(centerX + labelWidth + 10, startY + 2 * (labelHeight + verticalSpacing), 300, labelHeight*4);
+        descriptionInput.setLineWrap(true);
+        descriptionInput.setWrapStyleWord(true);
+
+        saveButton.setBounds(20, 420, saveButton.getWidth(), saveButton.getHeight());
 
 
-        // Añadir componentes al panel
-        layeredPane.setBounds(0, 0, 1200, 800);
-
-        layeredPane.add(backgroundLabel, Integer.valueOf(0));
-  
+        layeredPane.setBounds(0, 0, 550, 550);  
       
         layeredPane.add(descriptionLabel, Integer.valueOf(1));
         layeredPane.add(descriptionInput, Integer.valueOf(1));
@@ -85,7 +74,6 @@ public class ActivityPanel extends JPanel {
         layeredPane.add(priceLabel, Integer.valueOf(1));
         layeredPane.add(priceInput, Integer.valueOf(1));
         layeredPane.add(saveButton, Integer.valueOf(1));
-        layeredPane.add(cancelButton, Integer.valueOf(1));
 
         add(layeredPane);
         setVisible(true);
@@ -109,7 +97,4 @@ public class ActivityPanel extends JPanel {
         return saveButton;
     }
 
-    public CustomUsualButton getCancelButton() {
-        return cancelButton;
-    }
 }

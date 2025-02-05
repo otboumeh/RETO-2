@@ -3,7 +3,9 @@ package main.java.app.com.ui;
 import javax.swing.JFrame;
 
 import main.java.app.com.controllers.LoginPanelController;
+import main.java.app.com.controllers.NewEventPanelController;
 import main.java.app.com.controllers.NewProfilePanelController;
+import main.java.app.com.controllers.NewTripPanelController;
 import main.java.app.com.controllers.TripsAndEventsPanelController;
 import main.java.app.com.controllers.WelcomePanelController;
 import main.java.app.com.controllers.mainController.MainController;
@@ -26,16 +28,20 @@ public class MainFrame extends JFrame {
          add(MainController.getInstance().getNuevoViajePanel());
          add(MainController.getInstance().getEventPanel());
          add(MainController.getInstance().getTripsAndEventsPanel());
-         add(MainController.getInstance().getNewEvent());
-
+         add(MainController.getInstance().getNewEventPanel());
+         add(MainController.getInstance().getNewTripPanel());
+         
+         
          new WelcomePanelController();
          new LoginPanelController();
          new NewProfilePanelController();
          new TripsAndEventsPanelController();
+         new NewEventPanelController();
+         new NewTripPanelController();
 
          ///initial panel setup
          MainController.getInstance().hideAllPanels();
-         MainController.getInstance().getNuevoViajePanel().setVisible(true);
+         MainController.getInstance().getWelcomePanel().setVisible(true);
          
          
          setResizable(false);

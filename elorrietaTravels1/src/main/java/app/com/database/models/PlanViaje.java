@@ -4,16 +4,31 @@ import java.util.Objects;
 
 public class PlanViaje {
 	
-    private Evento evento = null;
+    private String idEvento =  null;
+    private String nomEvento = null;
+    private String tipoEvento = null;
     private String trayecto = null;
     private Vuelo ida = null;
     private Vuelo vuelta = null;
     
-	public Evento getEvento() {
-		return evento;
+    
+	public String getIdEvento() {
+		return idEvento;
 	}
-	public void setEvento(Evento evento) {
-		this.evento = evento;
+	public void setIdEvento(String idEvento) {
+		this.idEvento = idEvento;
+	}
+	public String getNomEvento() {
+		return nomEvento;
+	}
+	public void setNomEvento(String nomEvento) {
+		this.nomEvento = nomEvento;
+	}
+	public String getTipoEvento() {
+		return tipoEvento;
+	}
+	public void setTipoEvento(String tipoEvento) {
+		this.tipoEvento = tipoEvento;
 	}
 	public String getTrayecto() {
 		return trayecto;
@@ -35,7 +50,7 @@ public class PlanViaje {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(evento, ida, trayecto, vuelta);
+		return Objects.hash(idEvento, ida, nomEvento, tipoEvento, trayecto, vuelta);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -46,15 +61,15 @@ public class PlanViaje {
 		if (getClass() != obj.getClass())
 			return false;
 		PlanViaje other = (PlanViaje) obj;
-		return Objects.equals(evento, other.evento) && Objects.equals(ida, other.ida)
+		return Objects.equals(idEvento, other.idEvento) && Objects.equals(ida, other.ida)
+				&& Objects.equals(nomEvento, other.nomEvento) && Objects.equals(tipoEvento, other.tipoEvento)
 				&& Objects.equals(trayecto, other.trayecto) && Objects.equals(vuelta, other.vuelta);
 	}
 	@Override
 	public String toString() {
-		return "PlanViaje [evento=" + evento + ", trayecto=" + trayecto + ", ida=" + ida + ", vuelta=" + vuelta + "]";
+		return "PlanViaje [idEvento=" + idEvento + ", nomEvento=" + nomEvento + ", tipoEvento=" + tipoEvento
+				+ ", trayecto=" + trayecto + ", ida=" + ida + ", vuelta=" + vuelta + "]";
 	}
     
     
-
-
 }

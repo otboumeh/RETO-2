@@ -1,22 +1,37 @@
 package main.java.app.com.database.models;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class Alojamiento {
 	
-	private Evento event = null;
+    private String idEvento = null;
+    private String nomEvento = null;
+    private String tipoEvento = null;
     private String nomHotel = null;
     private String tipoHab = null;
     private String ciudad = null;
     private int precio = 0;
-    private String fechaEnt = null;
-    private String fechaSal = null;
+    private Date fechaEnt = null;
+    private Date fechaSal = null;
     
-	public Evento getEvent() {
-		return event;
+	public String getIdEvento() {
+		return idEvento;
 	}
-	public void setEvent(Evento event) {
-		this.event = event;
+	public void setIdEvento(String idEvento) {
+		this.idEvento = idEvento;
+	}
+	public String getNomEvento() {
+		return nomEvento;
+	}
+	public void setNomEvento(String nomEvento) {
+		this.nomEvento = nomEvento;
+	}
+	public String getTipoEvento() {
+		return tipoEvento;
+	}
+	public void setTipoEvento(String tipoEvento) {
+		this.tipoEvento = tipoEvento;
 	}
 	public String getNomHotel() {
 		return nomHotel;
@@ -42,21 +57,21 @@ public class Alojamiento {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-	public String getFechaEnt() {
+	public Date getFechaEnt() {
 		return fechaEnt;
 	}
-	public void setFechaEnt(String fechaEnt) {
+	public void setFechaEnt(Date fechaEnt) {
 		this.fechaEnt = fechaEnt;
 	}
-	public String getFechaSal() {
+	public Date getFechaSal() {
 		return fechaSal;
 	}
-	public void setFechaSal(String fechaSal) {
+	public void setFechaSal(Date fechaSal) {
 		this.fechaSal = fechaSal;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(ciudad, event, fechaEnt, fechaSal, nomHotel, precio, tipoHab);
+		return Objects.hash(ciudad, fechaEnt, fechaSal, idEvento, nomEvento, nomHotel, precio, tipoEvento, tipoHab);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -67,15 +82,18 @@ public class Alojamiento {
 		if (getClass() != obj.getClass())
 			return false;
 		Alojamiento other = (Alojamiento) obj;
-		return Objects.equals(ciudad, other.ciudad) && Objects.equals(event, other.event)
-				&& Objects.equals(fechaEnt, other.fechaEnt) && Objects.equals(fechaSal, other.fechaSal)
-				&& Objects.equals(nomHotel, other.nomHotel) && precio == other.precio
+		return Objects.equals(ciudad, other.ciudad) && Objects.equals(fechaEnt, other.fechaEnt)
+				&& Objects.equals(fechaSal, other.fechaSal) && Objects.equals(idEvento, other.idEvento)
+				&& Objects.equals(nomEvento, other.nomEvento) && Objects.equals(nomHotel, other.nomHotel)
+				&& precio == other.precio && Objects.equals(tipoEvento, other.tipoEvento)
 				&& Objects.equals(tipoHab, other.tipoHab);
 	}
 	@Override
 	public String toString() {
-		return "Alojamiento [event=" + event + ", nomHotel=" + nomHotel + ", tipoHab=" + tipoHab + ", ciudad=" + ciudad
-				+ ", precio=" + precio + ", fechaEnt=" + fechaEnt + ", fechaSal=" + fechaSal + "]";
+		return "Alojamiento [idEvento=" + idEvento + ", nomEvento=" + nomEvento + ", tipoEvento=" + tipoEvento
+				+ ", nomHotel=" + nomHotel + ", tipoHab=" + tipoHab + ", ciudad=" + ciudad + ", precio=" + precio
+				+ ", fechaEnt=" + fechaEnt + ", fechaSal=" + fechaSal + "]";
 	}
     
+      
 }

@@ -11,12 +11,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import com.toedter.calendar.JDateChooser;
-
+import main.java.app.com.ui.customComponents.customButtons.CustomBackButton;
 import main.java.app.com.ui.customComponents.customButtons.CustomUsualButton;
 
 
-public class NuevoViajePanel  extends JPanel{
+public class NewTripPanel  extends JPanel{
 	
 
 	private static final long serialVersionUID = 1L;
@@ -32,11 +31,9 @@ public class NuevoViajePanel  extends JPanel{
 	private JLabel servicesLabel = new JLabel("Servicios no inc.");
 	private JLayeredPane layeredPane = new JLayeredPane();
 	JTextField nameField = new JTextField();
-    String[] Tipos = {"Viaje Simple", "..", "..", "..", ".."};
-
-	JComboBox<String> typeField =  new JComboBox<>(Tipos);
-	JDateChooser endDateField = new JDateChooser() ;
-	JDateChooser startDateField = new JDateChooser();
+	JTextField typeField = new JTextField();
+	JTextField endDateField = new JTextField("dd/MM/yyyy");
+    JTextField startDateField = new JTextField("dd/MM/yyyy");
     JTextField daysField = new JTextField();
     String[] countries = {"España", "Francia", "Italia", "Alemania", "Reino Unido"};
     JComboBox<String> countryComboBox = new JComboBox<>(countries);
@@ -46,8 +43,11 @@ public class NuevoViajePanel  extends JPanel{
     JScrollPane servicesScroll = new JScrollPane(servicesArea);
 	private CustomUsualButton saveButton = new CustomUsualButton("Guardar");
 	private CustomUsualButton cancelButton = new CustomUsualButton("Cancelar");
+	
+	private CustomBackButton backButton = new CustomBackButton("←");
 
-	public NuevoViajePanel() {
+
+	public NewTripPanel() {
 		 setLayout(null);
 	        setBounds(0, 0, 1200, 800);        
 	    
@@ -55,7 +55,7 @@ public class NuevoViajePanel  extends JPanel{
 	        layeredPane.setBounds(0, 0, 1200, 800);
 	        
 	        int centerX = 200;
-	        int startY = 70;
+	        int startY = 150;
 	        int labelWidth = 200;
 	        int labelHeight = 30;
 	        int verticalSpacing = 30;
@@ -71,6 +71,9 @@ public class NuevoViajePanel  extends JPanel{
 	        startLabel.setBounds(centerX, startY + 2 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
 	        startLabel.setForeground(Color.BLACK);
 	        startLabel.setFont(new Font("Arial", Font.BOLD, 20));
+	        
+	    	backButton.setBounds(30, 30, 50, 30);
+
 
 	        endLabel.setBounds(centerX, startY + 3 * (labelHeight + verticalSpacing), labelWidth, labelHeight);
 	        endLabel.setForeground(Color.BLACK);
@@ -126,6 +129,8 @@ public class NuevoViajePanel  extends JPanel{
 	        layeredPane.add(servicesLabel, Integer.valueOf(1));
 	        layeredPane.add(saveButton, Integer.valueOf(1));
 	        layeredPane.add(cancelButton, Integer.valueOf(1));
+	        layeredPane.add(backButton, Integer.valueOf(1));
+
 
 
       
@@ -135,12 +140,12 @@ public class NuevoViajePanel  extends JPanel{
 	   public JTextField getNameField() {
 			return nameField;
 		}
-	   public JComboBox<String> getTypeField() {
+	   public JTextField getTypeField() {
 				return typeField;
 			}  
-	   public JDateChooser getEndDateField() {
+	   public JTextField getEndDateField() {
 				return endDateField;
-			}   public JDateChooser getStartDateField() {
+			}   public JTextField getStartDateField() {
 				return startDateField;
 			}   
 			public JTextField getDaysField() {
@@ -160,5 +165,8 @@ public class NuevoViajePanel  extends JPanel{
 			}	
 			public CustomUsualButton getCancelButton() {
 				return cancelButton;
+			}
+			public CustomBackButton getBackButton() {
+				return backButton;
 			}
 }
