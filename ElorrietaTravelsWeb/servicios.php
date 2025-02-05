@@ -16,7 +16,7 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar servicio</title>
-    <link rel="stylesheet" href="./servicios_style.css" />
+    <link rel="stylesheet" href="servicios_style.css" />
 </head>
 <body>
     <div class="firstContainer">
@@ -68,8 +68,6 @@ if (isset($_SESSION['username'])) {
 
                 <label for="duracion_vuelo">Duración del vuelo (horas):</label>
                 <input type="number" id="duracion_vuelo" name="duracion_vuelo">
-
-         
             </div>
 
             <div id="alojamiento_campos" style="display: none;">
@@ -93,22 +91,27 @@ if (isset($_SESSION['username'])) {
             </div>
 
             <button type="submit">GUARDAR SERVICIO</button>
-            
         </form>
-  
     </div>
-    <div id="vuelo_vuelta_campos" style="display: none;" class="SecondContainer">
-                    <label for="fecha_vuelta">Fecha de vuelta:</label>
-                    <input type="date" id="fecha_vuelta" name="fecha_vuelta">
-                    <label for="duracion">Duración del viaje (horas):</label>
-                    <input type="number" id="duracion" name="duracion">
-                    <label for="hora_vuelta">Hora de vuelta:</label>
-                    <input type="time" id="hora_vuelta" name="hora_vuelta">
-                    <label for="codigo_vuelo_vuelta">Código de vuelo de vuelta:</label>
-                    <input type="text" id="codigo_vuelo" name="codigo_vuelo">
-                    <label for="aerolinea">Aerolínea:</label>
-                    <input type="text" id="aerolinea" name="aerolinea">
-                </div>
+
+    <!-- Second Container for "ida y vuelta" -->
+    <div id="secondContainerWrapper" class="SecondContainer" style="display: none;">
+        <h3>Detalles de Vuelta</h3>
+        <div id="vuelo_vuelta_campos_second">
+            <label for="fecha_vuelta_second">Fecha de vuelta:</label>
+            <input type="date" id="fecha_vuelta_second" name="fecha_vuelta_second">
+
+            <label for="hora_vuelta_second">Hora de vuelta:</label>
+            <input type="time" id="hora_vuelta_second" name="hora_vuelta_second">
+
+            <label for="codigo_vuelo_vuelta_second">Código de vuelo de vuelta:</label>
+            <input type="text" id="codigo_vuelo_vuelta_second" name="codigo_vuelo_vuelta_second">
+
+            <label for="aerolinea_vuelta_second">Aerolínea de vuelta:</label>
+            <input type="text" id="aerolinea_vuelta_second" name="aerolinea_vuelta_second">
+        </div>
+    </div>
+
     <script src="servicios.js"></script>
 </body>
 </html>
