@@ -19,67 +19,96 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="./servicios_style.css" />
 </head>
 <body>
-<div class="firstContainer">
-    <form id="form_servicio">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre">
+    <div class="firstContainer">
+        <form id="form_servicio">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
 
-        <label for="tipo_servicio">¿Qué servicio necesita registrar?</label>
-        <select id="tipo_servicio" name="tipo_servicio" onchange="mostrarCampoOtros(this)">
-            <option value="">Elige una opción</option>
-            <option value="vuelo">Vuelo</option>
-            <option value="alojamiento">Alojamiento</option>
-            <option value="otros">Otros</option>
-        </select>
+            <label for="tipo_servicio">¿Qué servicio necesita registrar?</label>
+            <select id="tipo_servicio" name="tipo_servicio">
+                <option value="">Elige una opción</option>
+                <option value="vuelo">Vuelo</option>
+                <option value="alojamiento">Alojamiento</option>
+                <option value="otros">Otros</option>
+            </select>
 
-        <div id="otros_servicio" style="display: none;">
-            <label for="descripcion_otros">Por favor, especifique:</label>
-            <input type="text" id="descripcion_otros" name="descripcion_otros">
-        </div>
+            <div id="otros_servicio" style="display: none;">
+                <label for="descripcion_otros">Por favor, especifique:</label>
+                <input type="text" id="descripcion_otros" name="descripcion_otros">
+            </div>
 
-        <button type="submit">GUARDAR SERVICIO</button>
-    </form>
-</div>
+            <div id="vuelo_campos" style="display: none;">
+                <label>Tipo de viaje:</label>
+                <input type="radio" id="ida" name="tipo_viaje" value="ida" checked>
+                <label for="ida">Ida</label>
 
-<div id="popup" style="display: none;">
-    <div class="popup-content">
-        <span id="popup-close" onclick="cerrarPopup()">&times;</span>
-        <p id="popup-message"></p>
+                <input type="radio" id="ida_vuelta" name="tipo_viaje" value="ida_vuelta">
+                <label for="ida_vuelta">Ida y vuelta</label>
+
+                <label for="aeropuerto_origen">Aeropuerto de origen:</label>
+                <input type="text" id="aeropuerto_origen" name="aeropuerto_origen">
+
+                <label for="aeropuerto_destino">Aeropuerto de destino:</label>
+                <input type="text" id="aeropuerto_destino" name="aeropuerto_destino">
+
+                <label for="codigo_vuelo">Código de vuelo:</label>
+                <input type="text" id="codigo_vuelo" name="codigo_vuelo">
+
+                <label for="aerolinea">Aerolínea:</label>
+                <input type="text" id="aerolinea" name="aerolinea">
+
+                <label for="precio">Precio (€):</label>
+                <input type="number" id="precio" name="precio">
+
+                <label for="fecha_salida">Fecha de salida:</label>
+                <input type="date" id="fecha_salida" name="fecha_salida">
+
+                <label for="hora_salida">Hora de salida:</label>
+                <input type="time" id="hora_salida" name="hora_salida">
+
+                <label for="duracion_vuelo">Duración del vuelo (horas):</label>
+                <input type="number" id="duracion_vuelo" name="duracion_vuelo">
+
+         
+            </div>
+
+            <div id="alojamiento_campos" style="display: none;">
+                <label for="nombre_hotel">Nombre del hotel:</label>
+                <input type="text" id="nombre_hotel" name="nombre_hotel">
+
+                <label for="Ciudad">Ciudad:</label>
+                <input type="text" id="Ciudad" name="Ciudad">
+
+                <label for="precio_hotel">Precio (€):</label>
+                <input type="number" id="precio_hotel" name="precio_hotel">
+
+                <label for="fecha_entrada_hotel">Fecha de entrada:</label>
+                <input type="date" id="fecha_entrada_hotel" name="fecha_entrada_hotel">
+
+                <label for="fecha_salida_hotel">Fecha de salida:</label>
+                <input type="date" id="fecha_salida_hotel" name="fecha_salida_hotel">
+
+                <label for="duracion">Duración del viaje (horas):</label>
+                <input type="number" id="duracion" name="duracion">
+            </div>
+
+            <button type="submit">GUARDAR SERVICIO</button>
+            
+        </form>
+  
     </div>
-</div>
-
-<script>
-function mostrarCampoOtros(selectElement) {
-    var otrosCampo = document.getElementById('otros_servicio');
-    if (selectElement.value === 'otros') {
-        otrosCampo.style.display = 'block';
-    } else {
-        otrosCampo.style.display = 'none';
-    }
-}
-
-function validarFormulario(event) {
-    event.preventDefault();
-
-    var nombre = document.getElementById('nombre').value;
-    var tipo_servicio = document.getElementById('tipo_servicio').value;
-    var descripcion_otros = document.getElementById('descripcion_otros').value;
-
-    if (nombre === "" || tipo_servicio === "") {
-        alert("Por favor, complete todos los campos obligatorios.");
-        return;
-    }
-
-    if (tipo_servicio === "otros" && descripcion_otros === "") {
-        alert("Por favor, especifique el servicio en 'Otros'.");
-        return;
-    }
-
-    alert("Formulario enviado correctamente.");
-}
-
-document.getElementById('form_servicio').addEventListener('submit', validarFormulario);
-</script>
-
+    <div id="vuelo_vuelta_campos" style="display: none;" class="SecondContainer">
+                    <label for="fecha_vuelta">Fecha de vuelta:</label>
+                    <input type="date" id="fecha_vuelta" name="fecha_vuelta">
+                    <label for="duracion">Duración del viaje (horas):</label>
+                    <input type="number" id="duracion" name="duracion">
+                    <label for="hora_vuelta">Hora de vuelta:</label>
+                    <input type="time" id="hora_vuelta" name="hora_vuelta">
+                    <label for="codigo_vuelo_vuelta">Código de vuelo de vuelta:</label>
+                    <input type="text" id="codigo_vuelo" name="codigo_vuelo">
+                    <label for="aerolinea">Aerolínea:</label>
+                    <input type="text" id="aerolinea" name="aerolinea">
+                </div>
+    <script src="servicios.js"></script>
 </body>
 </html>
