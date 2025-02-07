@@ -1,0 +1,89 @@
+html, body{
+    padding: 0px;
+    margin: 0px;
+}
+
+.menucontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 1111;
+}
+
+
+.navbarContainer {
+    background-image: linear-gradient(165deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    border: 1px solid rgb(255, 255, 255, .1);
+    padding: 10px;
+    position: relative;
+    height: 70px;
+    min-width: 75vw;
+    max-width: 75vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar {
+    font-size: 18px;
+    padding: 0px;
+    width: 100%;
+    list-style: none;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar .home{
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    width: 80%;
+    font-weight: 600;
+    padding: 10px 20px;
+    text-transform:capitalize;
+    display: flex;
+    cursor: pointer;
+}
+
+.navbar .home a{
+    text-decoration: none;
+}
+
+.navbar .logout {
+    position: relative;
+    display: inline-block;
+    min-width: 50px;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.navbar .logout a {
+    text-decoration: none;
+    color: red;
+}
+
+
+.navbar .logout i {
+    font-size: 28px ;
+}
+
+.navbar .logout:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;        
+    color: #003366;
+    border-radius: 50px;
+} 
+
