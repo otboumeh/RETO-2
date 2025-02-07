@@ -39,9 +39,9 @@ CREATE TABLE Agencia(
 
 INSERT INTO Agencia (Id_Agencia, NomAgencia, Cod_Tipo, ColorAgencia, Cod_DescEmp, Logo, Pass)
 VALUES 
-('AG001', 'Agencia Viajar', 'A1', '#A9A9A9', 'L1', 'https://img.freepik.com/vector-gratis/tipografia-viaje-o-vector-logo_53876-43334.jpg?t=st=1738506941~exp=1738510541~hmac=70a3e587d7101d06aed0108db224a404dab81e95288ec281370364072a81f59f&w=740', 'pass@123'),
-('AG002', 'Turismo Total', 'A2', '#4B0082', 'L2', 'https://img.freepik.com/vector-gratis/fondo-plano-viaje-vintage_23-2148189177.jpg?t=st=1738506896~exp=1738510496~hmac=d155f787cc6de9464587258e0cc71196611e9cc2b7c83c630bb6b248d0554485&w=740', 'pass@456'),
-('AG003', 'ExploraMundo', 'A3', '#A52A2A', 'L3', 'https://img.freepik.com/vector-gratis/logotipo-viaje-detallado_23-2148619622.jpg?t=st=1738506970~exp=1738510570~hmac=f8516def09f612eafeaad5f63433868aa4fff54626f640f7c3309ae41aeede6d&w=740', 'pass@789');
+('AG001', 'Agencia Viajar', 'A1', '#6A0DAD', 'L1', 'https://img.freepik.com/vector-gratis/tipografia-viaje-o-vector-logo_53876-43334.jpg?t=st=1738506941~exp=1738510541~hmac=70a3e587d7101d06aed0108db224a404dab81e95288ec281370364072a81f59f&w=740', 'pass@123'),
+('AG002', 'Turismo Total', 'A2', '#3E2723', 'L2', 'https://img.freepik.com/vector-gratis/fondo-plano-viaje-vintage_23-2148189177.jpg?t=st=1738506896~exp=1738510496~hmac=d155f787cc6de9464587258e0cc71196611e9cc2b7c83c630bb6b248d0554485&w=740', 'pass@456'),
+('AG003', 'ExploraMundo', 'A3', '#8B2500', 'L3', 'https://img.freepik.com/vector-gratis/logotipo-viaje-detallado_23-2148619622.jpg?t=st=1738506970~exp=1738510570~hmac=f8516def09f612eafeaad5f63433868aa4fff54626f640f7c3309ae41aeede6d&w=740', 'pass@789');
 
 -- //////////////////////// Tipo Viaje /////////////////////////
 CREATE TABLE TipoViaje (
