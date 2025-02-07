@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const guardarBtn = document.querySelector("button[type='submit']");
     const tipoViaje = document.getElementById("tipo_viaje");
     const otrosServicio = document.getElementById("otros_servicio");
+    const nombre = document.getElementById("nombre");
+    const pais = document.getElementById("pais");
+    const descripcion = document.getElementById("descripcion");
+    const serviciosExcluidos = document.getElementById("servicios_excluidos");
 
     function mostrarCampoOtros() {
         if (tipoViaje.value === "otros") {
@@ -16,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     mostrarCampoOtros();
+
     function calcularDias() {
         if (!fechaInicio.value || !fechaFin.value) {
             diasInput.value = "";
@@ -32,13 +37,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const diferenciaDias = (fin - inicio) / (1000 * 3600 * 24);
         diasInput.value = diferenciaDias;
     }
+
     function validarFormulario(event) {
         event.preventDefault();
 
-        if (!fechaInicio.value || !fechaFin.value) {
-            alert("Por favor, seleccione ambas fechas antes de guardar.");
+        if (!nombre.value || !tipoViaje.value || !fechaInicio.value || !fechaFin.value || !pais.value || !descripcion.value || !serviciosExcluidos.value) {
+            alert("Por favor, complete todos los campos antes de guardar.");
             return;
         }
+
+        if (tipoViaje.value === "otros" && !document.getElementById("descripcion_otros").value) {
+            alert("Por favor, especifique el tipo de viaje.");
+            return;
+        }
+
         const inicio = new Date(fechaInicio.value);
         const fin = new Date(fechaFin.value);
 
@@ -49,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         alert("Formulario enviado correctamente.");
     }
+
     fechaInicio.addEventListener("keydown", (e) => e.preventDefault());
     fechaFin.addEventListener("keydown", (e) => e.preventDefault());
 
