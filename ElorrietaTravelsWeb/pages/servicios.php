@@ -1,5 +1,8 @@
 <?php
+include "../includes/connection.php";
+$conn = connection();
 session_start();
+
 $username;
 
 if (isset($_SESSION['username'])) {
@@ -8,7 +11,36 @@ if (isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
+
+$sql_aeropuerto = "SELECT Id_Aeropuerto, Ciudad FROM aeropuerto";
+$result_aeropuerto = $conn->query($sql_aeropuerto);
+
+$aeropuertoArray = [];
+
+if ($result_aeropuerto->num_rows > 0) {
+    while ($row = $result_aeropuerto->fetch_assoc()) {
+        $aeropuertoArray[] = $row['Id_Aeropuerto'] . " - " . $row['Ciudad'];
+    }
+} else {
+    echo "No airports found!";
+}
+
+$sql_aeroLinea = "SELECT Cod_AeroLinea, NomAeroLinea FROM AeroLinea";
+$result_aeroLinea = $conn->query($sql_aeroLinea);
+
+$aeroLineaArray = [];
+
+if ($result_aeroLinea->num_rows > 0) {
+    while ($row = $result_aeroLinea->fetch_assoc()) {
+        $aeroLineaArray[] = $row['Cod_AeroLinea'] . " - " . $row['NomAeroLinea'];
+    }
+} else {
+    echo "No airline found!";
+}
+
+$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -33,9 +65,14 @@ if (isset($_SESSION['username'])) {
             </select>
 
             <div id="otros_servicio" style="display: none;">
-                <label for="descripcion_otros">Por favor, especifique:</label>
-                <input type="text" id="descripcion_otros" name="descripcion_otros">
+                <label for="fecha_salida">Fecha:</label>
+                <input type="date" id="fecha_salida" name="fecha_salida">
+                <label for="descripcion_otros1">Descripción: </label>
+                <input type="textarea" id="descripcion_otros1" name="descripcion_otros" class="hola">
+                <label for="precio">Precio (€):</label>
+                <input type="number" id="precio" name="precio">
             </div>
+        
 
             <div id="vuelo_campos" style="display: none;">
                 <label>Tipo de viaje:</label>
@@ -46,17 +83,35 @@ if (isset($_SESSION['username'])) {
                 <label for="ida_vuelta">Ida y vuelta</label>
 
                 <label for="aeropuerto_origen">Aeropuerto de origen:</label>
-                <input type="text" id="aeropuerto_origen" name="aeropuerto_origen">
-
+                <select id="pais" name="pais" required>
+                <option value="">Seleccionar</option>
+                <?php
+                foreach ($aeropuertoArray as $aeropuerto) {
+                    echo "<option value=\"$aeropuerto\">$aeropuerto</option>";
+                }
+                ?>
+                </select>
                 <label for="aeropuerto_destino">Aeropuerto de destino:</label>
-                <input type="text" id="aeropuerto_destino" name="aeropuerto_destino">
-
+                <select id="pais" name="pais" required>
+                <option value="">Seleccionar</option>
+                <?php
+                foreach ($aeropuertoArray as $aeropuerto) {
+                    echo "<option value=\"$aeropuerto\">$aeropuerto</option>";
+                }
+                ?>
+                </select>
                 <label for="codigo_vuelo">Código de vuelo:</label>
                 <input type="text" id="codigo_vuelo" name="codigo_vuelo">
 
                 <label for="aerolinea">Aerolínea:</label>
-                <input type="text" id="aerolinea" name="aerolinea">
-
+                <select id="aerolinea" name="aerolinea" required>
+                    <option value="">Seleccionar</option>
+                    <?php
+                    foreach ($aeroLineaArray as $aeroLinea) {
+                        echo "<option value=\"$aeroLinea\">$aeroLinea</option>";
+                    }
+                    ?>
+                </select>
                 <label for="precio">Precio (€):</label>
                 <input type="number" id="precio" name="precio">
 
@@ -94,7 +149,6 @@ if (isset($_SESSION['username'])) {
         </form>
     </div>
 
-    <!-- Second Container for "ida y vuelta" -->
     <div id="secondContainerWrapper" class="SecondContainer" style="display: none;">
         <h3>Detalles de Vuelta</h3>
         <div id="vuelo_vuelta_campos_second">

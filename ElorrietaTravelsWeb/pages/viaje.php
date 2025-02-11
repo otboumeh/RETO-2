@@ -1,54 +1,59 @@
-
 <?php
-
 include "../includes/connection.php";
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 $conn = connection();
-
 session_start();
 
-$origen = '';
-$destino = '';
-$fecha = '';
-$errorWrongData = '';
+$username;
 
-function validate($data)
-{
-    return htmlspecialchars(trim($data));
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];  
+} else {
+    header("Location: login.php");
+    exit;
 }
 
-if (isset($_POST['submit'])) {  
-    $origen = validate($_POST['origen']);
-    $destino = validate($_POST['destino']);
-    $fecha = validate($_POST['fecha']);
+$sql_aeropuerto = "SELECT Id_Aeropuerto, Ciudad FROM aeropuerto";
+$result_aeropuerto = $conn->query($sql_aeropuerto);
 
-    if (empty($origen) || empty($destino) || empty($fecha)) {
-        $errorWrongData = "Todos los campos son obligatorios";
-    } else {
-        $sql = "INSERT INTO Viajes (Origen, Destino, Fecha) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        
-        if (!$stmt) {
-            die("Error en la consulta SQL: " . $conn->error);
-        }
+$aeropuertoArray = [];
 
-        $stmt->bind_param("sss", $origen, $destino, $fecha);
-        
-        if ($stmt->execute()) {
-            header("Location: ../viajes_list.php");
-            exit;
-        } else {
-            $errorWrongData = "Error al registrar el viaje";
-        }
-
-        $stmt->close();
+if ($result_aeropuerto->num_rows > 0) {
+    while ($row = $result_aeropuerto->fetch_assoc()) {
+        $aeropuertoArray[] = $row['Id_Aeropuerto'] . " - " . $row['Ciudad'];
     }
+} else {
+    echo "No airports found!";
 }
 
+$sql_aeroLinea = "SELECT Cod_AeroLinea, NomAeroLinea FROM AeroLinea";
+$result_aeroLinea = $conn->query($sql_aeroLinea);
 
+$aeroLineaArray = [];
+
+if ($result_aeroLinea->num_rows > 0) {
+    while ($row = $result_aeroLinea->fetch_assoc()) {
+        $aeroLineaArray[] = $row['Cod_AeroLinea'] . " - " . $row['NomAeroLinea'];
+    }
+} else {
+    echo "No airline found!";
+}
+
+$sql_pais = "SELECT Cod_Pais, NomPais FROM Pais";
+$result_pais = $conn->query($sql_pais);
+
+$paisArray = [];
+
+if ($result_pais->num_rows > 0) {
+    while ($row = $result_pais->fetch_assoc()) {
+        $paisArray[] = $row['Cod_Pais'] . " - " . $row['NomPais'];
+    }
+} else {
+    echo "No country found!";
+}
+
+$conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -90,9 +95,12 @@ if (isset($_POST['submit'])) {
 
 <label for="pais">País:</label>
 <select id="pais" name="pais" required>
-    <option value="">--Seleccionar--</option>
-    <option value="espana">España</option>
-    <option value="francia">Francia</option>
+    <option value="">Seleccionar</option>
+    <?php
+    foreach ($paisArray as $pais) {
+        echo "<option value=\"$pais\">$pais</option>";
+    }
+    ?>
 </select>
 
 <label for="descripcion">Descripción:</label>
