@@ -1,81 +1,75 @@
-/* 1. Cantidad de Viajes por Agencia */
+-- 1. Número de viajes organizados por cada agencia
 
-SELECT 
-    NomAgencia, 
-    COUNT(Id_Viaje) AS CantidadViajes
-FROM 
-    Agencia 
-NATURAL JOIN Viaje 
-GROUP BY 
-    NomAgencia
-ORDER BY 
-    CantidadViajes DESC;
-    
-    /* 2. Precio Promedio de Vuelos */
-    
-    SELECT 
-    Aerolinea, 
-    AVG(Precio) AS PrecioPromedio
-FROM 
-    Vuelo
-GROUP BY 
-    Aerolinea
-ORDER BY 
-    PrecioPromedio DESC;
-    
-    /* 3. Ingresos Totales por Actividades */
-    
-    SELECT 
-    E.Nom_Evento, 
-    SUM(A.Precio) AS IngresosTotales
-FROM 
-    Actividad A
-JOIN 
-    Evento E ON A.Id_Actividad = E.Id_Evento
-GROUP BY 
-    E.Nom_Evento;
-    
-    /* 4. País con Mayor Cantidad de Aerolíneas */
-    
-    SELECT 
-    P.NomPais, 
-    COUNT(A.Cod_Aerolinea) AS CantidadAerolineas
-FROM 
-    Pais P
-JOIN 
-    Aerolinea A ON P.Cod_Pais = A.Cod_Pais
-GROUP BY 
-    P.NomPais
-ORDER BY 
-    CantidadAerolineas DESC
-    LIMIT 1;
+SELECT a.NomAgencia, COUNT(v.Id_Viaje) AS Total_Viajes
+FROM Agencia a
+LEFT JOIN Viaje v ON a.Id_Agencia = v.Id_Agencia
+GROUP BY a.NomAgencia
+ORDER BY Total_Viajes DESC;
 
-/* 5.Precio Promedio de Alojamientos */
+-- 2. Duración promedio de los viajes por tipo de viaje
 
-SELECT 
-    Ciudad, 
-    AVG(Precio) AS PrecioPromedio
-FROM 
-    Alojamiento
-GROUP BY 
-   Ciudad
-ORDER BY 
-    PrecioPromedio DESC;
-    
-    /* 6.Duración Promedio de Viajes por Tipo */
-    
-    SELECT 
-    T.TipoViaje, 
-    AVG(V.NumDias) AS DuracionPromedio
-FROM 
-    TipoViaje T
-JOIN 
-    Viaje V ON T.Cod_TipoViaje = V.Cod_TipoViaje
-GROUP BY 
-    T.TipoViaje;
+SELECT tv.TipoViaje, AVG(v.NumDias) AS Duracion_Promedio
+FROM Viaje v
+JOIN TipoViaje tv ON v.Cod_TipoViaje = tv.Cod_TipoViaje
+GROUP BY tv.TipoViaje
+ORDER BY Duracion_Promedio DESC;
 
+-- 3. Cantidad de vuelos por tipo de trayecto
 
+SELECT Trayecto, COUNT(*) AS Total_Vuelos
+FROM Plan_Viaje
+WHERE TipoEvento = 'Vuelo'
+GROUP BY Trayecto
+ORDER BY Total_Vuelos DESC;
 
+-- 4. Costo total de vuelos por trayecto
 
+SELECT pv.Trayecto, SUM(v.Precio) AS Costo_Total
+FROM Plan_Viaje pv
+JOIN Vuelo v ON pv.Id_VueloIda = v.Id_Vuelo
+LEFT JOIN Vuelo v2 ON pv.Id_VueloVuelta = v2.Id_Vuelo
+GROUP BY pv.Trayecto;
 
+-- 5. Ciudad con mayor cantidad de alojamientos registrados
 
+SELECT Ciudad, COUNT(Id_Evento) AS Total_Alojamientos
+FROM Alojamiento
+GROUP BY Ciudad
+ORDER BY Total_Alojamientos DESC
+LIMIT 1;
+
+-- 6. Costo total de todas las actividades organizadas
+
+SELECT SUM(Precio) AS Costo_Total_Actividades
+FROM Actividad;
+
+-- 7. Top 3 de los países más visitados en los viajes
+
+SELECT PaisDestino, COUNT(Id_Viaje) AS Total_Visitas
+FROM Viaje
+GROUP BY PaisDestino
+ORDER BY Total_Visitas DESC
+LIMIT 3;
+
+-- 8. Precio medio de los alojamientos por tipo de habitación
+
+SELECT td.TipoHab, AVG(a.Precio) AS Precio_Medio
+FROM Alojamiento a
+JOIN TipoHabitacion td ON a.Cod_TipoHab = td.Cod_TipoHab
+GROUP BY td.TipoHab
+ORDER BY Precio_Medio DESC;
+
+-- 9. Número total de vuelos por aerolínea
+
+SELECT Aerolinea, COUNT(Id_Vuelo) AS Total_Vuelos
+FROM Vuelo
+GROUP BY Aerolinea
+ORDER BY Total_Vuelos DESC;
+
+-- 10. Fecha con más eventos organizados
+
+SELECT fecha, COUNT(Id_Evento) AS Total_Eventos
+FROM Actividad
+GROUP BY fecha
+ORDER BY Total_Eventos DESC
+LIMIT 1;

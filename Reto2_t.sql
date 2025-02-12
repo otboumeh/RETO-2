@@ -231,7 +231,7 @@ CREATE TABLE Vuelo (
     FechVuelo DATE NOT NULL,
     Aerolinea VARCHAR(5) NOT NULL,
     HorarioSalida TIME NOT NULL,
-    Duracion INT NOT NULL,
+    Duracion TIME NOT NULL,
     Id_AeroOrig CHAR(3) NOT NULL,  
     Id_AeroDest CHAR(3) NOT NULL,
     Precio INT NOT NULL,
@@ -242,9 +242,9 @@ CREATE TABLE Vuelo (
 
 INSERT INTO Vuelo (Id_Vuelo, FechVuelo, Aerolinea, HorarioSalida, Duracion, Id_AeroOrig, Id_AeroDest, Precio)
 VALUES
-('V001', '2025-03-01', 'AM', '08:00:00', 180, 'MEX', 'JFK', 500),
-('V002', '2025-04-10', 'AV', '10:00:00', 240, 'BOG', 'LIM', 450),
-('V003', '2025-06-05', 'LH', '14:00:00', 360, 'FRA', 'MAD', 700);
+('V001', '2025-03-01', 'AM', '08:00:00', '02:00:00', 'MEX', 'JFK', 500),
+('V002', '2025-04-10', 'AV', '10:00:00', '05:00:00', 'BOG', 'LIM', 450),
+('V003', '2025-06-05', 'LH', '14:00:00', '04:00:00', 'FRA', 'MAD', 700);
 
 -- ////////////////////////// tipo habitacion //////////////
 CREATE TABLE TipoHabitacion (
@@ -263,7 +263,7 @@ CREATE TABLE Plan_Viaje (
     Id_Evento CHAR(5) PRIMARY KEY,
     Nom_Evento VARCHAR(50) NOT NULL,
     TipoEvento VARCHAR(50) NOT NULL,
-    Trayecto ENUM("Ida","Ida_Vuelta") NOT NULL,
+    Trayecto ENUM("Ida","Ida-Vuelta") NOT NULL,
     Id_VueloIda CHAR(5) NOT NULL,
     Id_VueloVuelta CHAR(5),
     Id_Viaje CHAR(5) NOT NULL,
@@ -276,8 +276,8 @@ CREATE TABLE Plan_Viaje (
 INSERT INTO Plan_Viaje (Id_Evento, Nom_Evento, TipoEvento, Trayecto, Id_VueloIda, Id_VueloVuelta, Id_Viaje)
 VALUES
 ('EV001', 'Vuelo a Nueva York', 'Vuelo', 'Ida', 'V001', NULL, 'VI001'),
-('EV002', 'Vuelo ida y vuelta a Lima', 'Vuelo', 'Ida_Vuelta', 'V002', 'V003', 'VI002'),
-('EV003', 'Vuelo a Madrid', 'Ida', 'Vuelo', 'V003', NULL, 'VI003');
+('EV002', 'Vuelo ida y vuelta a Lima', 'Vuelo', 'Ida-Vuelta', 'V002', 'V003', 'VI002'),
+('EV003', 'Vuelo a Madrid', 'Vuelo', 'Ida', 'V003', NULL, 'VI003');
 
 
 
