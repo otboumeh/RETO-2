@@ -4,7 +4,6 @@ $conn = connection();
 
 $username = '';
 $password = '';
-
 $errorWrongData = '';
 function validate($data)
 {
@@ -21,7 +20,7 @@ if (isset($_POST['submit'])) {
         $errorWrongData = "Rellene los campos por favor";
     } else {
 
-        $sql = "SELECT NomAgencia, Pass, ColorAgencia FROM Agencia WHERE NomAgencia = ?";
+        $sql = "SELECT id_agencia, NomAgencia, Pass, ColorAgencia FROM Agencia WHERE NomAgencia = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -32,6 +31,7 @@ if (isset($_POST['submit'])) {
 
                 session_start();
                 $_SESSION['username'] = $username;
+                $_SESSION['id_agencia'] = $row['id_agencia'];
                 $_SESSION['colorAgencia'] = $row['ColorAgencia'];
 
 

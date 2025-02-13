@@ -16,11 +16,11 @@
 </header>
 <main>
 
-<div class="formWrapper">
+<div class="cardWrapper">
         <div class="firstCard card">
             <h1 class="cardTitle">Servicio</h1>
             <div class="cardBackground bg1"></div>
-            <button class="submitButton card1-btn" name="submit"><a href="./pages/servicios.php">Registrar</a></button>
+            <button class="submitButton card1-btn" name="submit"><a href="./pages/tipoServicios.php">Registrar</a></button>
         </div>
 
         <div class="secondCard card">

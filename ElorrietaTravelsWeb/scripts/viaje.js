@@ -1,25 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("DOM fully loaded");
 
+    const form = document.querySelector("form.secondContainter");
     const fechaInicio = document.getElementById("fecha_inicio");
     const fechaFin = document.getElementById("fecha_fin");
     const diasInput = document.getElementById("dias");
-    const guardarBtn = document.querySelector("button[type='submit']");
     const tipoViaje = document.getElementById("tipo_viaje");
-    const otrosServicio = document.getElementById("otros_servicio");
     const nombre = document.getElementById("nombre");
     const pais = document.getElementById("pais");
     const descripcion = document.getElementById("descripcion");
     const serviciosExcluidos = document.getElementById("servicios_excluidos");
 
-    function mostrarCampoOtros() {
-        if (tipoViaje.value === "otros") {
-            otrosServicio.style.display = "block";
-        } else {
-            otrosServicio.style.display = "none";
-        }
+    if (!form || !fechaInicio || !fechaFin || !diasInput) {
+        console.error("Missing elements in the DOM");
+        return;
     }
-    mostrarCampoOtros();
 
     function calcularDias() {
         if (!fechaInicio.value || !fechaFin.value) {
@@ -39,15 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validarFormulario(event) {
-        event.preventDefault();
-
         if (!nombre.value || !tipoViaje.value || !fechaInicio.value || !fechaFin.value || !pais.value || !descripcion.value || !serviciosExcluidos.value) {
             alert("Por favor, complete todos los campos antes de guardar.");
-            return;
-        }
-
-        if (tipoViaje.value === "otros" && !document.getElementById("descripcion_otros").value) {
-            alert("Por favor, especifique el tipo de viaje.");
+            event.preventDefault();
             return;
         }
 
@@ -56,10 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (fin < inicio) {
             alert("Error: La fecha de finalización no puede ser anterior a la fecha de inicio.");
+            event.preventDefault();
             return;
         }
-
-        alert("Formulario enviado correctamente.");
     }
 
     fechaInicio.addEventListener("keydown", (e) => e.preventDefault());
@@ -68,7 +56,5 @@ document.addEventListener("DOMContentLoaded", function () {
     fechaInicio.addEventListener("change", calcularDias);
     fechaFin.addEventListener("change", calcularDias);
 
-    tipoViaje.addEventListener("change", mostrarCampoOtros);
-
-    guardarBtn.addEventListener("click", validarFormulario);
+    form.addEventListener("submit", validarFormulario);
 });

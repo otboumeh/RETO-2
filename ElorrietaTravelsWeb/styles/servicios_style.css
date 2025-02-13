@@ -20,10 +20,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.firstContainer {
-    width: 400px;
-    min-height: 600px;
-    max-height: 1200px;
+.typeSelectContainer{
+    width: 600px;
+    height: 350px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background-image: linear-gradient(
@@ -36,9 +35,173 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.typeSelect{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.serviceOpcions{
+    width: 90%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="time"],
+select,
+textarea {
+    width: 65%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #000;
+}
+
+label {
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#vueloDiv, #alojamientoDiv, #otrosDiv{
+    width: 600px;
+    height: 620px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.1)
+    );
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#alojamientoDiv{
+    height: 520px;
+    width: 500px;
+}
+
+#otrosDiv{
+    height: 320px;
+    width: 500px;
+}
+
+#vuelo_campos, #alojamiento_campos, #otros_campos{
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+#alojamiento_campos{
+    width: 90%;
+    height: 85%;
+}
+
+#otros_campos{
+    width: 90%;
+    height: 75%;
+}
+
+.tipoviaje{
+    display: flex;
+}
+
+.tipoviaje .ida, .tipoviaje .ida_vuelta{
+    width: fit-content;
+    text-wrap: nowrap;
+}
+
+#ida, #ida_vuelta{
+    display: block;
+    width: 40%;
+}
+
+#vuelo_servicio, #alojamiento_servicio, #otros_servicio{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+  }
+
+  .double_input {
+    display: flex;
+    gap: 10px;
+    width: 65%;
+  }
+  
+  .double_input input, .double_input select{
+    width: 100%;
+  }
+
+  .vuelta {
+    display: none; 
+  }
+
+/* 
+
+.firstContainer {
+    width: 600px;
+    height: 700px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.1)
+    );
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     overflow-y: auto;
     padding: 20px;
     box-sizing: border-box;
+}
+.vuelo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
 }
 
 .SecondContainer {
@@ -63,31 +226,29 @@ body {
     margin-left: 20px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="number"],
-input[type="time"],
-select,
-textarea {
+.firstContainer label{
     width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
 }
 
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    align-self: flex-start;
-    margin-left: 5%;
+#vuelo_servicio{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
 }
+
+
+
+
+
+
+
 .hola {
     width: 90%;
     height: 130px;
@@ -100,19 +261,16 @@ label {
     background-color: rgba(255, 255, 255, 0.1);
     color: #333;
 }
+*/
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
+    border-radius: 50px;
+    width: 35%;
+    height: 40px;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer
+} 
