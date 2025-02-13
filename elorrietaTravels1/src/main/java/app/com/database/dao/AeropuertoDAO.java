@@ -12,13 +12,6 @@ import main.java.app.com.utils.DBConnection;
 
 public class AeropuertoDAO {
 	
-
-	/**
-	 * Retorna todas las filas de la tabla aeropuerto Si la consulta no devuelve
-	 * nada, retorna NULL
-	 * 
-	 * @return todos los alumnos o null
-	 */
 	public ArrayList<Aeropuerto> getAllAirports() {
 		ArrayList<Aeropuerto> ret = null;
 

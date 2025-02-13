@@ -10,10 +10,11 @@ public class Vuelo {
 	    private Date fechaIda = null;
 	    private String aerolinea = null;
 	    private Time horarioSalida = null;
-	    private int duracion = 0; 
-	    private Aeropuerto aeropuertoOrigen = null;
-	    private Aeropuerto aeropuertoDestino = null;
+	    private Time duracion = null; 
+	    private String idAeroOrigen = null;
+	    private String idAeroDestino = null;
 	    private int precio = 0;
+	    
 		public String getIdVuelo() {
 			return idVuelo;
 		}
@@ -38,23 +39,23 @@ public class Vuelo {
 		public void setHorarioSalida(Time horarioSalida) {
 			this.horarioSalida = horarioSalida;
 		}
-		public int getDuracion() {
+		public Time getDuracion() {
 			return duracion;
 		}
-		public void setDuracion(int duracion) {
+		public void setDuracion(Time duracion) {
 			this.duracion = duracion;
 		}
-		public Aeropuerto getAeropuertoOrigen() {
-			return aeropuertoOrigen;
+		public String getIdAeroOrigen() {
+			return idAeroOrigen;
 		}
-		public void setAeropuertoOrigen(Aeropuerto aeropuertoOrigen) {
-			this.aeropuertoOrigen = aeropuertoOrigen;
+		public void setIdAeroOrigen(String idAeroOrigen) {
+			this.idAeroOrigen = idAeroOrigen;
 		}
-		public Aeropuerto getAeropuertoDestino() {
-			return aeropuertoDestino;
+		public String getIdAeroDestino() {
+			return idAeroDestino;
 		}
-		public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
-			this.aeropuertoDestino = aeropuertoDestino;
+		public void setIdAeroDestino(String idAeroDestino) {
+			this.idAeroDestino = idAeroDestino;
 		}
 		public int getPrecio() {
 			return precio;
@@ -64,8 +65,8 @@ public class Vuelo {
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(aerolinea, aeropuertoDestino, aeropuertoOrigen, duracion, fechaIda, horarioSalida,
-					idVuelo, precio);
+			return Objects.hash(aerolinea, duracion, fechaIda, horarioSalida, idAeroDestino, idAeroOrigen, idVuelo,
+					precio);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -76,18 +77,18 @@ public class Vuelo {
 			if (getClass() != obj.getClass())
 				return false;
 			Vuelo other = (Vuelo) obj;
-			return Objects.equals(aerolinea, other.aerolinea)
-					&& Objects.equals(aeropuertoDestino, other.aeropuertoDestino)
-					&& Objects.equals(aeropuertoOrigen, other.aeropuertoOrigen) && duracion == other.duracion
+			return Objects.equals(aerolinea, other.aerolinea) && Objects.equals(duracion, other.duracion)
 					&& Objects.equals(fechaIda, other.fechaIda) && Objects.equals(horarioSalida, other.horarioSalida)
-					&& Objects.equals(idVuelo, other.idVuelo) && precio == other.precio;
+					&& Objects.equals(idAeroDestino, other.idAeroDestino)
+					&& Objects.equals(idAeroOrigen, other.idAeroOrigen) && Objects.equals(idVuelo, other.idVuelo)
+					&& precio == other.precio;
 		}
 		@Override
 		public String toString() {
 			return "Vuelo [idVuelo=" + idVuelo + ", fechaIda=" + fechaIda + ", aerolinea=" + aerolinea
-					+ ", horarioSalida=" + horarioSalida + ", duracion=" + duracion + ", aeropuertoOrigen="
-					+ aeropuertoOrigen + ", aeropuertoDestino=" + aeropuertoDestino + ", precio=" + precio + "]";
+					+ ", horarioSalida=" + horarioSalida + ", duracion=" + duracion + ", idAeroOrigen=" + idAeroOrigen
+					+ ", idAeroDestino=" + idAeroDestino + ", precio=" + precio + "]";
 		}
 
-	    
+	   
 }

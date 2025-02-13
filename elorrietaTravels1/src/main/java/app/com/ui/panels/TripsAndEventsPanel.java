@@ -229,5 +229,10 @@ public class TripsAndEventsPanel extends JPanel{
 	public CustomDeleteButton getEventDeleteButton() {
 		return eventDeleteButton;
 	}
+
+	public CustomUsualButton getGenerateOfferButton() {
+		return generateOfferButton;
+	}
+	
     
 }

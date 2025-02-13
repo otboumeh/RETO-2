@@ -2,10 +2,15 @@ package main.java.app.com.ui.panels;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,7 +24,12 @@ import main.java.app.com.ui.panels.newEventsSubpanels.ReturnFlightPanel;
 public class NewEventPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private String[] eventTypes = { "Elige una opción", "Vuelo", "Hotel", "Actividad" };
+	private String[] eventTypes = { "Elige una opción", "Vuelo", "Alojamiento", "Actividad" };
+	
+	private String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bhaga_River_Darcha_Gemur_Lahaul_Jun24_A7CR_00231.jpg/1920px-Bhaga_River_Darcha_Gemur_Lahaul_Jun24_A7CR_00231.jpg";
+    private Image logo;
+    private ImageIcon logoIcon = new ImageIcon();
+	private JLabel logoLabel = new JLabel();
 
 	private FlightPanel flightPanel = new FlightPanel();
 	private ReturnFlightPanel returnFlightPanel = new ReturnFlightPanel();
@@ -36,11 +46,26 @@ public class NewEventPanel extends JPanel {
 	private CustomComboBox eventTypesInput = new CustomComboBox(eventTypes);
 	private CustomBackButton backButton = new CustomBackButton("←");
 	private JLayeredPane layeredPane = new JLayeredPane();
+	
+	private String idViaje = null;
+	private String userId = null;
 
 	public NewEventPanel() {
 
 		setLayout(null);
 		setBounds(0, 0, 1200, 800);
+		
+		try {
+            URL url = new URL(imageUrl);
+            logo = ImageIO.read(url);
+            logoIcon = new ImageIcon(logo);
+            logoLabel.setIcon(logoIcon);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error loading image: " + e.getMessage());
+        }
+		
+    	logoLabel.setBounds(950, 0, 250, 250);
 
 		backgroundLabel.setBounds(0, 0, 1200, 800);
 
@@ -64,6 +89,7 @@ public class NewEventPanel extends JPanel {
 
 		layeredPane.setBounds(0, 0, 1200, 800);
 
+		layeredPane.add(logoLabel, Integer.valueOf(0));
 		layeredPane.add(backgroundLabel, Integer.valueOf(0));
 		layeredPane.add(eventNameLabel, Integer.valueOf(1));
 		layeredPane.add(eventTypesLabel, Integer.valueOf(1));
@@ -105,6 +131,27 @@ public class NewEventPanel extends JPanel {
 
 	public CustomComboBox getEventTypesInput() {
 		return eventTypesInput;
+	}
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public JLabel getLogoLabel() {
+		return logoLabel;
+	}
+
+	public String getIdViaje() {
+		return idViaje;
+	}
+
+	public void setIdViaje(String idViaje) {
+		this.idViaje = idViaje;
 	}
 
 }

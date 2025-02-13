@@ -26,7 +26,6 @@ public class MainFrame extends JFrame {
          add(MainController.getInstance().getLoginPanel());
          add(MainController.getInstance().getNewProfilePanel());
          add(MainController.getInstance().getNuevoViajePanel());
-         add(MainController.getInstance().getEventPanel());
          add(MainController.getInstance().getTripsAndEventsPanel());
          add(MainController.getInstance().getNewEventPanel());
          add(MainController.getInstance().getNewTripPanel());

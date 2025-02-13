@@ -13,67 +13,53 @@ import main.java.app.com.database.models.Alojamiento;
 import main.java.app.com.utils.DBConnection;
 
 public class AlojamientoDAO {
-	
-	public ArrayList<Alojamiento> getAlojamientoByTrip(String IdTrip) {
+
+	public ArrayList<Alojamiento> getAllAlojamientos() {
 		ArrayList<Alojamiento> ret = null;
 
-		// SQL que queremos lanzar
-		String sql = "select * from Alojamiento where Id_Viaje = '" + IdTrip + "'";
+		String sql = "select * from Alojamiento";
 
-		// La conexion con BBDD
 		Connection connection = null;
-
-		// Vamos a lanzar una sentencia SQL contra la BBDD
-		// Result set va a contener todo lo que devuelve la BBDD
 		Statement statement = null;
 		ResultSet resultSet = null;
 
 		try {
-			// El Driver que vamos a usar
 			Class.forName(DBConnection.DRIVER);
 
-			// Abrimos la conexion con BBDD
 			connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASS);
 
-			// Vamos a lanzar la sentencia...
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sql);
 
-			// Recorremos resultSet, que tiene las filas de la tabla
 			while (resultSet.next()) {
 
-				// Hay al menos una fila en el cursos, inicializamos el ArrayList
 				if (null == ret)
 					ret = new ArrayList<Alojamiento>();
 
-				// El Alumno
 				Alojamiento alojamiento = new Alojamiento();
 
-				// Sacamos las columnas del resultSet
-				
-			    String idEvento = resultSet.getString("Id_Evento");
-			    String nomEvento = resultSet.getString("Nom_Evento");;
-			    String tipoEvento =  resultSet.getString("TipoEvento");;
-			    String nomHotel =  resultSet.getString("NomHotel");
-			    String idTipoHab =  resultSet.getString("Cod_TipoHab");
-			    String ciudad =  resultSet.getString("Ciudad");
-			    int precio =  resultSet.getInt("precio");
-			    Date fechaEnt =  resultSet.getDate("FechaEnt");;
-			    Date fechaSal =  resultSet.getDate("FechaSal");;
+				String idEvento = resultSet.getString("Id_Evento");
+				String nomEvento = resultSet.getString("Nom_Evento");
+				String tipoEvento = resultSet.getString("TipoEvento");
+				String nomHotel = resultSet.getString("NomHotel");
+				String codTipoHab = resultSet.getString("Cod_TipoHab");
+				String ciudad = resultSet.getString("Ciudad");
+				int precio = resultSet.getInt("Precio");
+				Date fechaEnt = resultSet.getDate("FechaEnt");
+				Date fechaSal = resultSet.getDate("FechaSal");
 
-			    String tipoHab = roomTypeConverter(idTipoHab);
-				// Metemos los datos en Alumno
-			    alojamiento.setIdEvento(idEvento);
-			    alojamiento.setNomEvento(nomEvento);
-			    alojamiento.setTipoEvento(tipoEvento);
-			    alojamiento.setNomHotel(nomHotel);
-			    alojamiento.setTipoHab(tipoHab);
-			    alojamiento.setCiudad(ciudad);
-			    alojamiento.setPrecio(precio);
-			    alojamiento.setFechaEnt(fechaEnt);
-			    alojamiento.setFechaSal(fechaSal);
-				
-				// Lo guardamos en la lista
+				String tipoHab = roomCodeToTypeConverter(codTipoHab);
+
+				alojamiento.setIdEvento(idEvento);
+				alojamiento.setNomEvento(nomEvento);
+				alojamiento.setTipoEvento(tipoEvento);
+				alojamiento.setNomHotel(nomHotel);
+				alojamiento.setTipoHab(tipoHab);
+				alojamiento.setCiudad(ciudad);
+				alojamiento.setPrecio(precio);
+				alojamiento.setFechaEnt(fechaEnt);
+				alojamiento.setFechaSal(fechaSal);
+
 				ret.add(alojamiento);
 			}
 		} catch (SQLException sqle) {
@@ -81,37 +67,108 @@ public class AlojamientoDAO {
 		} catch (Exception e) {
 			System.out.println("Error generico - " + e.getMessage());
 		} finally {
-			// Cerramos al reves de como las abrimos
 			try {
 				if (resultSet != null)
 					resultSet.close();
 			} catch (Exception e) {
-				// No hace falta
 			}
 			try {
 				if (statement != null)
 					statement.close();
 			} catch (Exception e) {
-				// No hace falta
 			}
 			try {
 				if (connection != null)
 					connection.close();
 			} catch (Exception e) {
-				// No hace falta
 			}
 		}
 		return ret;
 	}
-	
-	private String roomTypeConverter(String type) {
+
+	public ArrayList<Alojamiento> getAlojamientoByTrip(String IdTrip) {
+		ArrayList<Alojamiento> ret = null;
+
+		String sql = "select * from Alojamiento where Id_Viaje = '" + IdTrip + "'";
+
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			Class.forName(DBConnection.DRIVER);
+
+			connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASS);
+
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+
+			while (resultSet.next()) {
+
+				if (null == ret)
+					ret = new ArrayList<Alojamiento>();
+
+				Alojamiento alojamiento = new Alojamiento();
+
+				String idEvento = resultSet.getString("Id_Evento");
+				String nomEvento = resultSet.getString("Nom_Evento");
+				;
+				String tipoEvento = resultSet.getString("TipoEvento");
+				;
+				String nomHotel = resultSet.getString("NomHotel");
+				String idTipoHab = resultSet.getString("Cod_TipoHab");
+				String ciudad = resultSet.getString("Ciudad");
+				int precio = resultSet.getInt("precio");
+				Date fechaEnt = resultSet.getDate("FechaEnt");
+				;
+				Date fechaSal = resultSet.getDate("FechaSal");
+				;
+
+				String tipoHab = roomCodeToTypeConverter(idTipoHab);
+				alojamiento.setIdEvento(idEvento);
+				alojamiento.setNomEvento(nomEvento);
+				alojamiento.setTipoEvento(tipoEvento);
+				alojamiento.setNomHotel(nomHotel);
+				alojamiento.setTipoHab(tipoHab);
+				alojamiento.setCiudad(ciudad);
+				alojamiento.setPrecio(precio);
+				alojamiento.setFechaEnt(fechaEnt);
+				alojamiento.setFechaSal(fechaSal);
+
+				ret.add(alojamiento);
+			}
+		} catch (SQLException sqle) {
+			System.out.println("Error con la BBDD - " + sqle.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error generico - " + e.getMessage());
+		} finally {
+			try {
+				if (resultSet != null)
+					resultSet.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+			}
+		}
+		return ret;
+	}
+
+	private String roomCodeToTypeConverter(String type) {
 		String ret = null;
 		switch (type) {
 		case "DB":
 			ret = "Doble";
 			break;
 		case "DUI":
-			ret = "Doble uso Individual";			
+			ret = "Doble uso Individual";
 			break;
 		case "SIN":
 			ret = "Individual";
@@ -120,16 +177,32 @@ public class AlojamientoDAO {
 			ret = "Triple";
 			break;
 		default:
-			ret = "algo esta mal";
+			ret = "Unknown Type";
 		}
 		return ret;
 	}
-	
-	/**
-	 * Elimina un alumno en la tabla t_alumno
-	 * 
-	 * @param alumno El alumno a eliminar
-	 */
+
+	private String roomTypeToCodeConverter(String type) {
+		String ret = null;
+		switch (type) {
+		case "Doble":
+			ret = "DB";
+			break;
+		case "Uso doble e individual":
+			ret = "DUI";
+			break;
+		case "Individual":
+			ret = "SIN";
+			break;
+		case "Triple":
+			ret = "TPL";
+			break;
+		default:
+			ret = "Unknown Type";
+		}
+		return ret;
+	}
+
 	public void deleteAlojamientoById(String eventId) {
 
 		Connection connection = null;
@@ -164,4 +237,57 @@ public class AlojamientoDAO {
 			}
 		}
 	}
+
+	public void addAlojamientoByIdViaje(Alojamiento alojamiento, String ViajeId) {
+
+		Connection connection = null;
+
+		Statement statement = null;
+
+		try {
+			Class.forName(DBConnection.DRIVER);
+
+			connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASS);
+
+			statement = connection.createStatement();
+
+			String idEvento = alojamiento.getIdEvento();
+			String nomEvento = alojamiento.getNomEvento();
+			String tipoEvento = alojamiento.getTipoEvento();
+			String nomHotel = alojamiento.getNomHotel();
+			String tipoHab = alojamiento.getTipoHab();
+			String codTipoHab = roomTypeToCodeConverter(tipoHab);
+			System.out.println(codTipoHab);
+
+			String ciudad = alojamiento.getCiudad();
+			int precio = alojamiento.getPrecio();
+			Date fechaEnt = alojamiento.getFechaEnt();
+			Date fechaSal = alojamiento.getFechaSal();
+			String idViaje = ViajeId;
+
+			String sql = "insert into Alojamiento (Id_Evento, Nom_Evento, TipoEvento, NomHotel, Cod_TipoHab, Ciudad, precio, FechaEnt, FechaSal, Id_Viaje) VALUES ('"
+					+ idEvento + "', '" + nomEvento + "', '" + tipoEvento + "', '" + nomHotel + "', '" + codTipoHab
+					+ "', '" + ciudad + "', '" + precio + "', '" + fechaEnt + "', '" + fechaSal + "', '" + idViaje
+					+ "')";
+
+			statement.executeUpdate(sql);
+
+		} catch (SQLException sqle) {
+			System.out.println("Error con la BBDD - " + sqle.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error generico - " + e.getMessage());
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
 }

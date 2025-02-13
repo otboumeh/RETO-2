@@ -12,12 +12,6 @@ import main.java.app.com.utils.DBConnection;
 
 public class AgenciaDAO {
 
-	/**
-	 * Retorna todas las filas de la tabla t_alumno. Si la consulta no devuelve
-	 * nada, retorna NULL
-	 * 
-	 * @return todos los alumnos o null
-	 */
 	public ArrayList<Agencia> getAllAgencies() {
 		ArrayList<Agencia> ret = null;
 
@@ -47,7 +41,7 @@ public class AgenciaDAO {
 				String nomAgencia = resultSet.getString("NomAgencia");
 				String tipoAgencia = resultSet.getString("Cod_Tipo");
 				String colorAgencia = resultSet.getString("ColorAgencia");
-				String NumEmp = resultSet.getString("Cod_descEmp");
+				String numEmp = resultSet.getString("Cod_descEmp");
 				String logo = resultSet.getString("Logo");
 				String pass = resultSet.getString("Pass");
 
@@ -55,7 +49,7 @@ public class AgenciaDAO {
 				agencia.setNomAgencia(nomAgencia);
 				agencia.setTipoAgencia(tipoAgencia);
 				agencia.setColorAgencia(colorAgencia);
-				agencia.setNumEmp(NumEmp);
+				agencia.setNumEmp(numEmp);
 				agencia.setLogo(logo);
 				agencia.setPass(pass);
 
@@ -85,11 +79,7 @@ public class AgenciaDAO {
 		return ret;
 	}
 
-	/**
-	 * Inserta un alumno en la tabla t_alumno
-	 * 
-	 * @param alumno El alumno a insertar
-	 */
+
 	public void addAgencyToDB(Agencia agencia) {
 
 		Connection connection = null;

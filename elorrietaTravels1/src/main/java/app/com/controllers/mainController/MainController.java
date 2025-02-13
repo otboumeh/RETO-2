@@ -7,6 +7,9 @@ import main.java.app.com.ui.panels.NewTripPanel;
 import main.java.app.com.ui.panels.TripsAndEventsPanel;
 import main.java.app.com.ui.panels.WelcomePanel;
 import main.java.app.com.ui.panels.newEventsSubpanels.ActivityPanel;
+import main.java.app.com.ui.panels.newEventsSubpanels.FlightPanel;
+import main.java.app.com.ui.panels.newEventsSubpanels.HotelPanel;
+import main.java.app.com.ui.panels.newEventsSubpanels.ReturnFlightPanel;
 
 public class MainController {
 
@@ -16,20 +19,19 @@ public class MainController {
 	private LoginPanel loginPanel;
 	private NewProfilePanel newProfilePanel;
 	private NewTripPanel nuevoViajePanel;
-	private ActivityPanel activityPanel;
 	private TripsAndEventsPanel tripsAndEventsPanel;
 	private NewEventPanel newEventPanel;
 	private NewTripPanel newTripPanel;
-
+	
 	private MainController() {
 		welcomePanel = new WelcomePanel();
 		loginPanel = new LoginPanel();
 		newProfilePanel = new NewProfilePanel();
 		nuevoViajePanel = new NewTripPanel();
-		activityPanel = new ActivityPanel();
 		tripsAndEventsPanel = new TripsAndEventsPanel(); 
 		newEventPanel = new NewEventPanel();
 		newTripPanel = new NewTripPanel();
+		
 	}
 
 	public static MainController getInstance() {
@@ -54,10 +56,6 @@ public class MainController {
 		return nuevoViajePanel;
 	}
 
-	public ActivityPanel getEventPanel() {
-		return activityPanel;
-	}
-
 	public TripsAndEventsPanel getTripsAndEventsPanel() {
 		return tripsAndEventsPanel;
 	}
@@ -73,21 +71,29 @@ public class MainController {
 	
 //////////////// metodos generales ////////////
 	
+
+
 	public void hideAllPanels() {
 		welcomePanel.setVisible(false);
 		loginPanel.setVisible(false);
 		newProfilePanel.setVisible(false);
 		nuevoViajePanel.setVisible(false);
-		activityPanel.setVisible(false);
 		tripsAndEventsPanel.setVisible(false);
 		
 		newEventPanel.setVisible(false);
+		newEventPanel.getActivityPanel().setVisible(false);
 		newEventPanel.getFlightPanel().setVisible(false);
 		newEventPanel.getHotelPanel().setVisible(false);
 		newEventPanel.getReturnFlightPanel().setVisible(false);
-		newEventPanel.getActivityPanel().setVisible(false);
 		
 		newTripPanel.setVisible(false);
 
+	}
+	
+	public void hideAllSubPanels() {
+		newEventPanel.getActivityPanel().setVisible(false);
+		newEventPanel.getFlightPanel().setVisible(false);
+		newEventPanel.getReturnFlightPanel().setVisible(false);
+		newEventPanel.getHotelPanel().setVisible(false);
 	}
 }
