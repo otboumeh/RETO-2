@@ -1,0 +1,55 @@
+
+------------------->> Tour por Europa <<-------------------
+
+Descripción: 
+          Tipo de Viaje:      Grupos
+          Fecha Inicio:       2025-04-01
+          Fecha Fin:          2025-04-20
+          Numero de Días:     19
+          País Destino:       Francia, Italia, España
+          Descripción:        Visitas culturales
+          Servicios no Incl.: Visitas culturales
+
+Eventos: 
+>>>>> Vuelo ida y vuelta a Lima
+    Descripción: 
+                Tipo de Evento:   Vuelo
+                Trayecto     :    Ida-Vuelta
+                Fecha Ida:        2025-04-10
+                Aerolínea Ida:    Avianca
+                Fecha Vuelta:    2025-06-05
+                Aerolínea Vuelta: Lufthansa
+                Precio:           1150
+>>>>> Metropolis stay
+    Descripción: 
+                Tipo de Evento:     Alojamiento
+                Nombre del Hotel:   Hotel Melia Barcelona
+                Tipo de Dormitorio: Individual
+                Ciudad:             Barcelona
+                Fecha de Entrada:   2025-02-05
+                Fecha de Salida:    2025-02-10
+                Precio:             120
+>>>>> Arte & Tradición
+    Descripción: 
+                Tipo de Evento:   Actividad
+                Descripción:      Tour por el Parc Güell en Barcelona
+                Fecha:             2025-02-06
+                Precio:           40
+
+-------------------------------------------------------------------------
+
+------------------->> hi <<-------------------
+
+Descripción: 
+          Tipo de Viaje:      Parejas
+          Fecha Inicio:       2025-02-12
+          Fecha Fin:          2025-02-19
+          Numero de Días:     7
+          País Destino:       Bélgica
+          Descripción:         hello world
+          Servicios no Incl.:  hello world
+
+Eventos: 
+***No hay ningun evento en este viaje***
+-------------------------------------------------------------------------
+
