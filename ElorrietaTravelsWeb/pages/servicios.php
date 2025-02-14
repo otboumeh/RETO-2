@@ -66,6 +66,18 @@
         echo "No airline found!";
     }
 
+    $sql_tipoHab = "SELECT Cod_TipoHab, TipoHab FROM TipoHabitacion";
+    $result_TipoHab = $conn->query($sql_tipoHab);
+
+    $tipoHabArray = [];
+
+    if ($result_TipoHab->num_rows > 0) {
+        while ($row = $result_TipoHab->fetch_assoc()) {
+            $tipoHabArray[] = $row['Cod_TipoHab'] . " - " . $row['TipoHab'];
+        }
+    } else {
+        echo "tipoHab no encontrado!";
+    }
 
 
     $conn->close();
@@ -98,6 +110,12 @@
 </script>
     </head>
     <body>
+
+    <header>
+    <?php include '../includes/header.php'; ?>
+    </header>
+
+    <main>
 
     <div id="vueloDiv" class="hidden">
         <h3>Detalles de Vuelo</h3>
@@ -191,7 +209,10 @@
 
                 <label for="duracion_vuelo">
                     Duración del vuelo (horas):
+                    <div class="double_input">                
                     <input type="number" id="duracion_vuelo" name="duracion_vuelo" min="0" required />
+                    <input type="number" id="duracion_vueloVuelta" name="duracion_vueloVuelta" min="0" class="vuelta" />
+                    </div>
                 </label>
             </div>
 
@@ -201,12 +222,24 @@
 
     <div id="alojamientoDiv" class="hidden">
         <h3>Detalles de Alojamiento</h3>
-        <form id="alojamiento_servicio" action="saveAlojamiento.php" method="POST">
+        <form id="alojamiento_servicio" action="saveHotel.php" method="POST">
             <div id="alojamiento_campos">
 
                 <label for="nombre_hotel">
                     Nombre del hotel:
                     <input type="text" id="nombre_hotel" name="nombre_hotel" required />
+                </label>
+
+                <label for="tipo_hab">
+                    Tipo de dormitorio:
+                    <select id="tipo_hab" name="tipo_hab"  >
+                        <option value="">Elige un opción</option>
+                        <?php
+                            foreach ($tipoHabArray as $tipoHab) {
+                                echo "<option value=\"$tipoHab\">$tipoHab</option>";
+                            }
+                        ?>  
+                    </select>               
                 </label>
 
                 <label for="Ciudad">
@@ -248,7 +281,7 @@
 
                 <label for="descripcion_otros">
                     Descripción:
-                    <input type="text" id="descripcion_otros" name="descripcion_otros" required />
+                    <textarea id="descripcion_otros" name="descripcion_otros" rows="2" placeholder="Escribe la descripcion" required ></textarea>
                 </label>
 
                 <label for="fecha_salida">
@@ -267,6 +300,14 @@
         </form>
     </div>
 
+    </main>
+
+
+    <footer>
+
+        <?php include '../includes/footer.php'; ?>
+
+    </footer>
 
         <script src="../scripts/servicios.js"></script>
     </body>

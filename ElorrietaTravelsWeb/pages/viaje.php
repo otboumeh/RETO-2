@@ -12,12 +12,6 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
-$successMessage = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : "";
-$errorMessage = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : "";
-
-unset($_SESSION['success_message']);
-unset($_SESSION['error_message']);
-
 $sql_tipoViaje = "SELECT TipoViaje FROM tipoViaje";
 $result_tipoViaje = $conn->query($sql_tipoViaje);
 
@@ -57,20 +51,12 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar viaje</title>
     <link rel="stylesheet" href="../styles/viaje_style.css">
-    <script>
-    window.onload = function() {
-        <?php if (!empty($successMessage)): ?>
-            alert("<?php echo htmlspecialchars($successMessage); ?>");
-        <?php endif; ?>
-
-        <?php if (!empty($errorMessage)): ?>
-            alert("<?php echo htmlspecialchars($errorMessage); ?>");
-        <?php endif; ?>
-    };
-</script>
-
 </head>
 <body>
+<header>
+    <?php include '../includes/header.php'; ?>
+    </header>
+<main>
 
 <div class="firstContainer">
   <form class="secondContainter" action ="saveViaje.php" method="POST">
@@ -137,18 +123,18 @@ $conn->close();
         id="descripcion"
         name="descripcion"
         rows="4"
-        placeholder="Ingrese una descripción del viaje"
+        placeholder="Escribe una descripción"
         required
       ></textarea>
     </label>
   
-    <label for="servicios_excluidos"
+    <label for="servicios_no_incluidos"
       >Servicios excluidos:
       <textarea
-        id="servicios_excluidos"
-        name="servicios_excluidos"
+        id="servicios_no_incluidos"
+        name="servicios_no_incluidos"
         rows="4"
-        placeholder="Ingrese los servicios que no están incluidos"
+        placeholder="Escribe los servicios no incluidos"
         required
       ></textarea>
     </label>
@@ -156,7 +142,12 @@ $conn->close();
     <button type="submit">GUARDAR</button>
   </form>
 </div>
+</main>
 
+
+<footer>
+  <?php include '../includes/footer.php'; ?>
+</footer>
 
 <script src="../scripts/viaje.js" ></script>
 </body>

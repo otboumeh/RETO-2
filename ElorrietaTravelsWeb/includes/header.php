@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
+
 $username;
 
 if (isset($_SESSION['username'])) {
@@ -16,7 +19,7 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles/headerStyle.css">
+    <link rel="stylesheet" href="/ElorrietaTravelsWeb/styles/headerStyle.css">
 
     <script
       src="https://kit.fontawesome.com/38b1724369.js"
@@ -28,10 +31,10 @@ if (isset($_SESSION['username'])) {
 <header class="menucontainer" id="top">
     <nav class="navbarContainer">
       <ul class="navbar">
-        <li class="level1 home" ><a href="./index.php" style="color: <?php echo $color; ?>;"><?php echo "Welcome back " . $username . "!"?></a>
+        <li class="level1 home" ><a href="/ElorrietaTravelsWeb/index.php" style="color: <?php echo $color; ?>;"><?php echo $username ?></a>
         </li>
         <li class="level1 logout">
-          <a class="l1" href="./pages/logout.php"><i class="fas fa-power-off"></i>
+          <a class="l1" href="/ElorrietaTravelsWeb/pages/logout.php"><i class="fas fa-power-off"></i>
           </a>
         </li>
       </ul>

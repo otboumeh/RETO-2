@@ -1,4 +1,16 @@
+<?php
+include "./includes/connection.php";
+$conn = connection();
+session_start();
 
+$successMessage = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : "";
+$errorMessage = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : "";
+
+unset($_SESSION['success_message']);
+unset($_SESSION['error_message']);
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +19,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/index_style.css">
     <title>Document</title>
+    <script>
+    window.onload = function() {
+        <?php if (!empty($successMessage)): ?>
+            alert("<?php echo htmlspecialchars($successMessage); ?>");
+        <?php endif; ?>
+
+        <?php if (!empty($errorMessage)): ?>
+            alert("<?php echo htmlspecialchars($errorMessage); ?>");
+        <?php endif; ?>
+    };
+    </script>
 </head>
 
 <body>

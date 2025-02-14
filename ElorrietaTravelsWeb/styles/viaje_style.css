@@ -9,17 +9,49 @@ body{
     padding: 0px;
 }
 
-body{
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     background-image: url(../assets/images/bg.jpg);
     background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+header{
+    width: 100%;
+    position: relative;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-self: flex-start;
+    justify-self: flex-start;
+    left: 0;
+    top: 0;
+    z-index: 1111;
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
 }
 .firstContainer{
     width: 600px;

@@ -13,9 +13,6 @@ if (empty($idAgencia)) {
     die("Error: ID de Agencia no está definido en la sesión.");
 }
 
-
-// Example usage:
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomViaje = isset($_POST['nombre']) ? trim($_POST['nombre']) : "";
     $tipoViaje = isset($_POST['tipo_viaje']) ? trim($_POST['tipo_viaje']) : "";
@@ -25,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numDias = isset($_POST['dias']) ? intval($_POST['dias']) : 0;
     $paisDestino = isset($_POST['pais']) ? trim($_POST['pais']) : "";
     $descripcion = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : "";
-    $serviciosExcluidos = isset($_POST['servicios_excluidos']) ? trim($_POST['servicios_excluidos']) : "";
+    $serviciosExcluidos = isset($_POST['servicios_no_incluidos']) ? trim($_POST['servicios_no_incluidos']) : "";
 
     $idViaje = "VI" . strtoupper(substr(uniqid(), -3));
     
@@ -46,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         $_SESSION['success_message'] = "Viaje registrado correctamente.";
     } else {
-        $_SESSION['error_message'] = "Error al registrar el viaje: " . $stmt->error;
+        $_SESSION['error_message'] = "Error: no se ha registrado el viaje";
     }
 
     $stmt->close();
     $conn->close();
 
-    header("Location: viaje.php");
+    header("Location: /ElorrietaTravelsWeb/index.php");
     exit;
 }
 ?>

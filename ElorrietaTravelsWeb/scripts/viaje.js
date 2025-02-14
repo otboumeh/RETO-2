@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const nombre = document.getElementById("nombre");
     const pais = document.getElementById("pais");
     const descripcion = document.getElementById("descripcion");
-    const serviciosExcluidos = document.getElementById("servicios_excluidos");
+    const serviciosNoIncluidos = document.getElementById("servicios_no_incluidos");
 
     if (!form || !fechaInicio || !fechaFin || !diasInput) {
         console.error("Missing elements in the DOM");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validarFormulario(event) {
-        if (!nombre.value || !tipoViaje.value || !fechaInicio.value || !fechaFin.value || !pais.value || !descripcion.value || !serviciosExcluidos.value) {
+        if (!nombre.value || !tipoViaje.value || !fechaInicio.value || !fechaFin.value || !pais.value || !descripcion.value || !serviciosNoIncluidos.value) {
             alert("Por favor, complete todos los campos antes de guardar.");
             event.preventDefault();
             return;

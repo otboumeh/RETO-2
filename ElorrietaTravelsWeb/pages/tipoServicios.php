@@ -5,7 +5,6 @@ $conn = connection();
 
 $successError = "";
 
-// Handle session messages
 if (isset($_SESSION['success_message'])) {
     $successError = $_SESSION['success_message'];
     unset($_SESSION['success_message']);
@@ -15,19 +14,16 @@ if (isset($_SESSION['error_message'])) {
     unset($_SESSION['error_message']);
 }
 
-// Ensure user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
 
-// Ensure agency ID exists
 $idAgencia = isset($_SESSION['id_agencia']) ? trim($_SESSION['id_agencia']) : "";
 if (empty($idAgencia)) {
     die("Error: ID de Agencia no está definido en la sesión.");
 }
 
-// Fetch available trips (viajes)
 $viajes = [];
 $sql_viaje = "SELECT id_viaje, NomViaje FROM viaje WHERE id_Agencia = ?";
 $stmt = $conn->prepare($sql_viaje);
@@ -41,7 +37,6 @@ if ($result_viaje->num_rows > 0) {
     }
 }
 
-// Fetch airports
 $aeropuertoArray = [];
 $sql_aeropuerto = "SELECT Id_Aeropuerto, Ciudad FROM aeropuerto";
 $result_aeropuerto = $conn->query($sql_aeropuerto);
@@ -54,7 +49,6 @@ if ($result_aeropuerto->num_rows > 0) {
     $successError = "No airports found!";
 }
 
-// Fetch airlines
 $aeroLineaArray = [];
 $sql_aeroLinea = "SELECT Cod_AeroLinea, NomAeroLinea FROM AeroLinea";
 $result_aeroLinea = $conn->query($sql_aeroLinea);
@@ -75,7 +69,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar servicio</title>
-    <link rel="stylesheet" href="../styles/servicios_style.css" />
+    <link rel="stylesheet" href="../styles/tipoServicios.css" />
     
     <script>
         <?php if (!empty($successError)): ?>
@@ -87,6 +81,12 @@ $conn->close();
 </head>
 <body>
 
+<header>
+    <?php include '../includes/header.php'; ?>
+</header>
+
+<main>
+    
 <div class="typeSelectContainer">
     <h3>Nuevo Servicio</h3>
     <div class="typeSelect">
@@ -117,6 +117,13 @@ $conn->close();
         </form>
     </div>
 </div>
+</main>
+
+<footer>
+
+<?php include '../includes/footer.php'; ?>
+
+</footer>
 
 </body>
 </html>

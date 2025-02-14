@@ -1,24 +1,3 @@
-
-
-function handleSelection() {
-    let nombre = document.getElementById("nombre").value;
-    let tipoServicio = document.getElementById("tipo_servicio").value;
-
-    if (nombre.trim() === "" || tipoServicio === "") {
-        alert("Por favor, complete todos los campos.");
-        return;
-    }
-    hideAll()
-
-    if (tipoServicio === "vuelo") {
-        document.getElementById("vueloDiv").style.display = "flex";
-    } else if (tipoServicio === "alojamiento") {
-        document.getElementById("alojamientoDiv").style.display = "flex";
-    } else if (tipoServicio === "otros") {
-        document.getElementById("otrosDiv").style.display = "flex";
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const idaRadio = document.getElementById("ida");
     const idaVueltaRadio = document.getElementById("ida_vuelta");
@@ -43,15 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     toggleVueltaFields();
 });
-
-
-
-function hideAll(){
-    document.querySelector(".typeSelectContainer").style.display = "none";
-    document.getElementById("vueloDiv").style.display = "none";
-    document.getElementById("alojamientoDiv").style.display = "none";
-    document.getElementById("otrosDiv").style.display = "none";
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     const vueloForm = document.getElementById("vuelo_servicio");
@@ -180,4 +150,3 @@ document.getElementById('fecha_entrada_hotel').addEventListener('change', calcul
 document.getElementById('fecha_salida_hotel').addEventListener('change', calculateDuracion);
 
 document.getElementById('duracion').readOnly = true;
-
