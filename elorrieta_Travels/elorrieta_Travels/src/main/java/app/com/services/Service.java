@@ -288,11 +288,103 @@ public class Service {
 		airportNameAndCity = airportNameAndCity.toUpperCase();
 		switch (airportNameAndCity) {
 		case "ACA - MÉXICO (ACAPULCO)":
-			return "ACA";
-		case "ACE - LANZAROTE":
-			return "ACE";
-		default:
-			return "UNK";
+	            return "ACA";
+	        case "ACE - LANZAROTE":
+	            return "ACE";
+	        case "AGP - MÁLAGA":
+	            return "AGP";
+	        case "ALC - ALICANTE":
+	            return "ALC";
+	        case "AMM - JORDANIA (AMMÁN)":
+	            return "AMM";
+	        case "AMS - HOLANDA (ÁMSTERDAM)":
+	            return "AMS";
+	        case "ATH - GRECIA (ATENAS)":
+	            return "ATH";
+	        case "BCN - BARCELONA":
+	            return "BCN";
+	        case "BER - ALEMANIA (BERLÍN)":
+	            return "BER";
+	        case "BIO - BILBAO":
+	            return "BIO";
+	        case "BJZ - BADAJOZ":
+	            return "BJZ";
+	        case "BKK - TAILANDIA (BANGKOK)":
+	            return "BKK";
+	        case "BOG - COLOMBIA (BOGOTÁ)":
+	            return "BOG";
+	        case "BOS - BOSTON":
+	            return "BOS";
+	        case "BRU - BÉLGICA (BRUSELAS)":
+	            return "BRU";
+	        case "BSB - BRASIL (BRASILIA)":
+	            return "BSB";
+	        case "BUE - ARGENTINA (BUENOS AIRES)":
+	            return "BUE";
+	        case "CAI - EGIPTO (EL CAIRO)":
+	            return "CAI";
+	        case "CAS - MARRUECOS (CASABLANCA)":
+	            return "CAS";
+	        case "CDG - FRANCIA (PARÍS, CHARLES DE GAULLE)":
+	            return "CDG";
+	        case "CPH - DINAMARCA (COPENHAGUE)":
+	            return "CPH";
+	        case "DUB - IRLANDA (DUBLÍN)":
+	            return "DUB";
+	        case "DUS - ALEMANIA (DÜSSELDORF)":
+	            return "DUS";
+	        case "EAS - SAN SEBASTIÁN":
+	            return "EAS";
+	        case "FRA - ALEMANIA (FRÁNCFORT)":
+	            return "FRA";
+	        case "GVA - SUIZA (GINEBRA)":
+	            return "GVA";
+	        case "HAM - ALEMANIA (HAMBURGO)":
+	            return "HAM";
+	        case "HEL - FINLANDIA (HELSINKI)":
+	            return "HEL";
+	        case "HOU - HOUSTON":
+	            return "HOU";
+	        case "IST - TURQUÍA (ESTAMBUL)":
+	            return "IST";
+	        case "JFK - NUEVA YORK (JFK)":
+	            return "JFK";
+	        case "LAX - LOS ÁNGELES":
+	            return "LAX";
+	        case "LHR - REINO UNIDO (HEATHROW)":
+	            return "LHR";
+	        case "LIM - PERÚ (LIMA)":
+	            return "LIM";
+	        case "MAD - MADRID":
+	            return "MAD";
+	        case "MEX - MÉXICO (CIUDAD DE MÉXICO)":
+	            return "MEX";
+	        case "MUC - ALEMANIA (MÚNICH)":
+	            return "MUC";
+	        case "NBO - KENIA (NAIROBI)":
+	            return "NBO";
+	        case "ORY - FRANCIA (PARÍS, ORLY)":
+	            return "ORY";
+	        case "OSL - NORUEGA (OSLO)":
+	            return "OSL";
+	        case "PMI - PALMA DE MALLORCA":
+	            return "PMI";
+	        case "PRG - REPÚBLICA CHECA (PRAGA)":
+	            return "PRG";
+	        case "RAK - MARRUECOS (MARRAKECH)":
+	            return "RAK";
+	        case "SFO - SAN FRANCISCO":
+	            return "SFO";
+	        case "SYD - AUSTRALIA (SÍDNEY)":
+	            return "SYD";
+	        case "TFN - TENERIFE NORTE":
+	            return "TFN";
+	        case "TFS - TENERIFE SUR":
+	            return "TFS";
+	        case "ZRH - SUIZA (ZÚRICH)":
+	            return "ZRH";
+	        default:
+	            return "UNK";
 		}
 	}
 }
